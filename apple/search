@@ -1,0 +1,242 @@
+{
+    "swaggerVersion": "1.2",
+    "basePath": "https://itunes.apple.com",
+    "authorizations": {
+    },
+    "apis": [
+	{
+	    "path": "/search",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "SearchMedia",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Search Media in iTunes",
+		    "notes": "",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "term",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "The URL-encoded text string you want to search for.For example: jack+johnson.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "country",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "The two-letter country code for the store you want to search. The search uses the default store front for the specified country. For example: US.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "media",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "The media type you want to search for. For example: movie.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "entity",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "The type of results you want returned, relative to the specified media type. For example: movieArtist for a movie media type search.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "attribute",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "The attribute you want to search for in the stores, relative to the specified media type. For example, if you want to search for an artist by name specify entity=allArtist&attribute=allArtistTerm.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "callback",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "The name of the Javascript callback function you want to use when returning search results to your website. For example: wsSearchCB.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "limit",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "The number of search results you want the iTunes Store to return. ",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "lang",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "The language, English or Japanese, you want to use when returning search results. Specify the language using the five-letter codename. For example: en_us.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "version",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "The search result key version you want to receive back from your search.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "explicit",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "A flag indicating whether or not you want to include explicit content in your search results.",
+			    "defaultValue": ""
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+	{
+	    "path": "/lookup",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "LookupMedia",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Lookup Media in iTunes",
+		    "notes": "",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "id",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "Media ID No.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "upc",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "UPCs / EANs",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "isbn",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "ISBN No.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "amgArtistId",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "AMG Artist",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "amgAlbumId",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "AMG Album Id.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "amgVideoId",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "AMG Video Id.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "entity",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "The type of results you want returned, relative to the specified media type. For example: movieArtist for a movie media type search.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "attribute",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "The attribute you want to search for in the stores, relative to the specified media type. For example, if you want to search for an artist by name specify entity=allArtist&attribute=allArtistTerm.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "callback",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "The name of the Javascript callback function you want to use when returning search results to your website. For example: wsSearchCB.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "limit",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "The number of search results you want the iTunes Store to return. ",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "lang",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "The language, English or Japanese, you want to use when returning search results. Specify the language using the five-letter codename. For example: en_us.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "version",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "The search result key version you want to receive back from your search.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "explicit",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "A flag indicating whether or not you want to include explicit content in your search results.",
+			    "defaultValue": ""
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	}
+    ],
+    "models": {
+}
+}

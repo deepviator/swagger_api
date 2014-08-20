@@ -1,0 +1,15 @@
+{
+    "swaggerVersion": "1.2",
+    "apis": [
+	{
+            "path": "/../search",
+	    "description": "Operations about search"
+	}
+    ],
+    "authorizations": {
+    },
+    "info": {
+        "title": "Apple Search API",
+	"description": "Apple Search API. Click <a href=\"https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html\">here</a> to visit official Apple iTunes API documentation."
+    }
+}
