@@ -13,7 +13,7 @@
 		    "method": "GET",
 		    "type": "",
 		    "summary": "Search Media in iTunes",
-		    "notes": "",
+		    "notes": "To search for content from a field in your website and display the results in your website, you must create a search field that passes a fully-qualified URL content request to the iTunes Store, parse the JavaScript Object Notation (JSON) format returned from the search, and display the results in your website.",
 		    "consumes": [
 		    ],
 		    "produces": [
@@ -117,7 +117,7 @@
 		    "method": "GET",
 		    "type": "",
 		    "summary": "Lookup Media in iTunes",
-		    "notes": "",
+		    "notes": "You can also create a lookup request to search for content in the stores based on iTunes IDs, UPCs/ EANs, and All Music Guide (AMG) IDs. ID-based lookups are faster and contain fewer false-positive results.",
 		    "consumes": [
 		    ],
 		    "produces": [
