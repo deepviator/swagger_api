@@ -60,10 +60,726 @@
 		    "parameters": [
                         {
 	                    "name": "neighbors",
-                            "required": true,
+                            "required": false,
 			    "type": "string",
                             "paramType": "query" ,
 			    "description": "Number of friends' scores to return that are adjacent to your score, in ranked order. The current user's score is returned as well. An odd number of neighbors returns one more user ahead of the current user than behind. If the current user is at the top of the leaderboard, only the neighbors behind the current user are returned. If the current user is at the bottom of the leaderboard, only the neighbors ahead of the current user are returned. If neighbors is not specified, scores for all your friends are returned.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+	{
+	    "path": "/requests",
+	    "operations": [
+		{
+		    "nickname": "requests",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "FriendsRequest",
+		    "notes": "Shows a user the list of users with whom they have a pending friend request (i.e., someone tried to add the acting user as a friend, but the acting user has not accepted).<br><br> This resource <strong>Requires Acting User</strong>",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+	{
+	    "path": "/search",
+	    "operations": [
+		{
+		    "nickname": "search",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "UserSearch",
+		    "notes": "Helps a user locate friends.<br><br> This resource <strong>Requires Acting User</strong>",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "phone",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "A comma-delimited list of phone numbers to look for.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "email",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "A comma-delimited list of email addresses to look for.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "twitter",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "A comma-delimited list of Twitter handles to look for.",
+			    "defaultValue": "naveen"
+                        },
+                        {
+	                    "name": "twitterSource",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "A single Twitter handle. Results will be users that this handle follows on Twitter who use Foursquare.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "fbid",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "A comma-delimited list of Facebook ID's to look for.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "name",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "A single string to search for in users' names.",
+			    "defaultValue": ""
+                        },                       
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+	{
+	    "path": "/{USER_ID}/badges",
+	    "operations": [
+		{
+		    "nickname": "badges",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "ShowBadges",
+		    "notes": "Returns badges for a given user.<br><br> This resource <strong>Requires Acting User</strong>",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "USER_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "Identity of the user to get details for. Pass self to get details of the acting user.",
+			    "defaultValue": "self"
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+	{
+	    "path": "/{USER_ID}/checkins",
+	    "operations": [
+		{
+		    "nickname": "checkins",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "CheckinHistory",
+		    "notes": "Returns a history of checkins for the authenticated user.<br><br> This resource <strong>Requires Acting User</strong>",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "USER_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "For now, only self is supported.",
+			    "defaultValue": "self"
+                        },
+                        {
+	                    "name": "limit",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query" ,
+			    "description": "Number of results to return, up to 250.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "offset",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query" ,
+			    "description": "The number of results to skip. Used to page through results.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "sort",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "How to sort the returned checkins. Can be newestfirst or oldestfirst.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "afterTimestamp",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "Retrieve the first results to follow these seconds since epoch. This should be useful for paging forward in time, or when polling for changes. To avoid missing results when polling, we recommend subtracting several seconds from the last poll time and then de-duplicating.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "beforeTimestamp",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "Retrieve the first results prior to these seconds since epoch. Useful for paging backward in time.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+	{
+	    "path": "/{USER_ID}/friends",
+	    "operations": [
+		{
+		    "nickname": "friends",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "ListFriends",
+		    "notes": "Returns an array of a user's friends. <br><br> This resource <strong>Requires Acting User</strong>",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "USER_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "Identity of the user to get friends of. Pass self to get friends of the acting user.",
+			    "defaultValue": "self"
+                        },
+                        {
+	                    "name": "limit",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query" ,
+			    "description": "Number of results to return, up to 500.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "offset",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query" ,
+			    "description": "Used to page through results.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+	{
+	    "path": "/{USER_ID}/lists",
+	    "operations": [
+		{
+		    "nickname": "lists",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "A User's Lists.",
+		    "notes": "A User's Lists. <br><br> This resource <strong>Requires Acting User</strong>",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "USER_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "Identity of the user to get friends of. Pass self to get friends of the acting user.",
+			    "defaultValue": "self"
+                        },
+                        {
+	                    "name": "group",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "can be created (lists created by this user), edited (other people's lists this user has edited), followed (lists this user follows), friends (lists from this user's friends), and suggested (lists relevant to the user's current location).",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "ll",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "Location of the user, required in order to receive the suggested group.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "limit",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query" ,
+			    "description": "Number of results to return, up to 200.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "offset",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query" ,
+			    "description": "The number of results to skip. Used to page through results.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{USER_ID}/mayorships",
+	    "operations": [
+		{
+		    "nickname": "mayorships",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "ShowMayorships",
+		    "notes": "Returns a user's mayorships. <br><br> This resource <strong>Requires Acting User</strong>",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "USER_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "Identity of the user to get details for. Pass self to get details of the acting user.",
+			    "defaultValue": "self"
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{USER_ID}/photos",
+	    "operations": [
+		{
+		    "nickname": "photos",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "UsersPhotos",
+		    "notes": "Returns photos from a user. <br><br> This resource <strong>Requires Acting User</strong>",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "USER_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "Identity of the user to get friends of. Pass self to get friends of the acting user.",
+			    "defaultValue": "self"
+                        },
+                        {
+	                    "name": "limit",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query" ,
+			    "description": "Number of results to return, up to 500.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "offset",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query" ,
+			    "description": "Used to page through results.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{USER_ID}/tips",
+	    "operations": [
+		{
+		    "nickname": "tips",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Tips from a User.",
+		    "notes": "Returns tips from a user. <br><br> This resource <strong>Requires Acting User</strong>",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "USER_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "Identity of the user to get friends of. Pass self to get friends of the acting user.",
+			    "defaultValue": "self"
+                        },
+                        {
+	                    "name": "sort",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "One of recent, nearby, or popular. Nearby requires geolat and geolong to be provided.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "ll",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "Location of the user, required in order to receive the suggested group.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "limit",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query" ,
+			    "description": "Number of results to return, up to 500.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "offset",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query" ,
+			    "description": "The number of results to skip. Used to page through results.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{USER_ID}/todos",
+	    "operations": [
+		{
+		    "nickname": "todos",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Todos from a User.",
+		    "notes": "Returns todos from a user.  <br><br> This resource <strong>Requires Acting User</strong>",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "USER_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "Identity of the user to get friends of. Pass self to get friends of the acting user.",
+			    "defaultValue": "self"
+                        },
+                        {
+	                    "name": "sort",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "One of recent, nearby, or popular. Nearby requires geolat and geolong to be provided.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "ll",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "Location of the user, required in order to receive the suggested group.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{USER_ID}/venuehistory",
+	    "operations": [
+		{
+		    "nickname": "venuehistory",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Venues visited by a user.",
+		    "notes": "Returns a list of all venues visited by the specified user, along with how many visits and when they were last there.  <br><br> This resource <strong>Requires Acting User</strong>",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "USER_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "Identity of the user to get friends of. Pass self to get friends of the acting user.",
+			    "defaultValue": "self"
+                        },
+                        {
+	                    "name": "beforeTimestamp",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "Seconds since epoch.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "afterTimestamp",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "Seconds after epoch.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "categoryId",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "Limits returned venues to those in this category. If specifying a top-level category, all sub-categories will also match the query.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{USER_ID}/venuelikes",
+	    "operations": [
+		{
+		    "nickname": "venuelikes",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Venues liked by a user.",
+		    "notes": "Returns a list of venues liked by the specified user.  <br><br> This resource <strong>Requires Acting User</strong>",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "USER_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "Identity of the user to get friends of. Pass self to get friends of the acting user.",
+			    "defaultValue": "self"
+                        },
+                        {
+	                    "name": "beforeTimestamp",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "Seconds since epoch.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "afterTimestamp",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "Seconds after epoch.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "categoryId",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "Limits returned venues to those in this category. If specifying a top-level category, all sub-categories will also match the query.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "limit",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query" ,
+			    "description": "Number of results to return.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "offset",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query" ,
+			    "description": "Used to page through results.",
 			    "defaultValue": ""
                         },
                         {
