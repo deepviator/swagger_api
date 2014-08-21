@@ -1,15 +1,73 @@
 {
     "swaggerVersion": "1.2",
+    "apiVersion": "2.0",
     "apis": [
 	{
-            "path": "/../search",
+            "path": "/../Users",
+	    "description": "Operations about search"
+	},
+	{
+            "path": "/../Venues",
+	    "description": "Operations about search"
+	},
+	{
+            "path": "/../Venuegroups",
+	    "description": "Operations about search"
+	},
+	{
+            "path": "/../Checkins",
+	    "description": "Operations about search"
+	},
+	{
+            "path": "/../Tips",
+	    "description": "Operations about search"
+	},
+	{
+            "path": "/../Lists",
+	    "description": "Operations about search"
+	},
+	{
+            "path": "/../Updates",
+	    "description": "Operations about search"
+	},
+	{
+            "path": "/../Photos",
+	    "description": "Operations about search"
+	},
+	{
+            "path": "/../Settings",
+	    "description": "Operations about search"
+	},
+	{
+            "path": "/../Specials",
+	    "description": "Operations about search"
+	},
+	{
+            "path": "/../Campaigns",
+	    "description": "Operations about search"
+	},
+	{
+            "path": "/../Events",
+	    "description": "Operations about search"
+	},
+	{
+            "path": "/../Pages",
+	    "description": "Operations about search"
+	},
+	{
+            "path": "/../Pageupdates",
+	    "description": "Operations about search"
+	},
+	{
+            "path": "/../Multi",
 	    "description": "Operations about search"
 	}
+
     ],
     "authorizations": {
     },
     "info": {
-        "title": "Apple Search API",
-	"description": "Apple Search API. Click <a href=\"https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html\">here</a> to visit official Apple iTunes API documentation.<br> <br>The Search API allows you to place search fields in your website to search for content within the iTunes Store, App Store, iBooks Store and Mac App Store. You can search for a variety of content; including apps, iBooks, movies, podcasts, music, music videos, audiobooks, and TV shows. You can also call an ID-based lookup request to create mappings between your content library and the digital catalog. Developers may use promotional content in the API, including previews of songs, music videos, album art and App icons only to promote store content and not for entertainment purposes. "
+        "title": "Foursquare API",
+	"description": "Foursquare API. Click <a href=\"https://developer.foursquare.com/\">here</a> to visit official Apple iTunes API documentation.<br> <br>The Foursquare API gives you access to our world-class places database and the ability to interact with Foursquare users and merchants. Start using the only location API you'll ever need."
     }
 }
