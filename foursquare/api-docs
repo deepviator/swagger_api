@@ -4,63 +4,63 @@
     "apis": [
 	{
             "path": "/../Users",
-	    "description": "Operations about search"
+	    "description": "Operations about Users"
 	},
 	{
             "path": "/../Venues",
-	    "description": "Operations about search"
+	    "description": "Operations about Venues"
 	},
 	{
             "path": "/../Venuegroups",
-	    "description": "Operations about search"
+	    "description": "Operations about Venuegroups"
 	},
 	{
             "path": "/../Checkins",
-	    "description": "Operations about search"
+	    "description": "Operations about Checkins"
 	},
 	{
             "path": "/../Tips",
-	    "description": "Operations about search"
+	    "description": "Operations about Tips"
 	},
 	{
             "path": "/../Lists",
-	    "description": "Operations about search"
+	    "description": "Operations about Lists"
 	},
 	{
             "path": "/../Updates",
-	    "description": "Operations about search"
+	    "description": "Operations about Updates"
 	},
 	{
             "path": "/../Photos",
-	    "description": "Operations about search"
+	    "description": "Operations about Photos"
 	},
 	{
             "path": "/../Settings",
-	    "description": "Operations about search"
+	    "description": "Operations about Settings"
 	},
 	{
             "path": "/../Specials",
-	    "description": "Operations about search"
+	    "description": "Operations about Specials"
 	},
 	{
             "path": "/../Campaigns",
-	    "description": "Operations about search"
+	    "description": "Operations about Campaigns"
 	},
 	{
             "path": "/../Events",
-	    "description": "Operations about search"
+	    "description": "Operations about Events"
 	},
 	{
             "path": "/../Pages",
-	    "description": "Operations about search"
+	    "description": "Operations about Pages"
 	},
 	{
             "path": "/../Pageupdates",
-	    "description": "Operations about search"
+	    "description": "Operations about Pageupdates"
 	},
 	{
             "path": "/../Multi",
-	    "description": "Operations about search"
+	    "description": "Operations about Multi"
 	}
 
     ],
