@@ -797,6 +797,209 @@
 		    }
 		}
 	    ]
+	},
+        {
+	    "path": "/{USER_ID}/approve",
+	    "operations": [
+		{
+		    "nickname": "approve",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "ApproveFriendRequest",
+		    "notes": "Approve a friend request.<br><br> This resource <strong>Requires Acting User</strong>",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "USER_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "required The user ID of a pending friend.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{USER_ID}/deny",
+	    "operations": [
+		{
+		    "nickname": "deny",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "DenyFriendRequest",
+		    "notes": "Deny a friend request.<br><br> This resource <strong>Requires Acting User</strong>",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "USER_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "required The user ID of a pending friend.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{USER_ID}/setpings",
+	    "operations": [
+		{
+		    "nickname": "setpings",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Set whether to receive pings about a user",
+		    "notes": "Changes whether the acting user will receive pings (phone notifications) when the specified user checks in.<br><br> This resource <strong>Requires Acting User</strong>",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "USER_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "required The user ID of a pending friend.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "value",
+                            "required": false,
+			    "type": "boolean",
+                            "paramType": "query" ,
+			    "description": "required True or false.",
+			    "defaultValue": "false"
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{USER_ID}/unfriend",
+	    "operations": [
+		{
+		    "nickname": "unfriend",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Remove a Friend",
+		    "notes": "Cancels any relationship between the acting user and the specified user. Removes a friend, unfollows a celebrity, or cancels a pending friend request..<br><br> This resource <strong>Requires Acting User</strong>",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "USER_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "Identity of the user to unfriend.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{USER_ID}/update",
+	    "operations": [
+		{
+		    "nickname": "update",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Update user's photo",
+		    "notes": "Update user's photo.<br><br> This resource <strong>Requires Acting User</strong>",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "photo",
+                            "required": true,
+			    "type": "File",
+                            "paramType": "form" ,
+			    "description": "Photo under 100KB in multipart MIME encoding with content type image/jpeg, image/gif, or image/png.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
 	}
 
     ],
