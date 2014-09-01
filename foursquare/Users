@@ -803,7 +803,7 @@
 	    "operations": [
 		{
 		    "nickname": "approve",
-		    "method": "GET",
+		    "method": "POST",
 		    "type": "",
 		    "summary": "ApproveFriendRequest",
 		    "notes": "Approve a friend request.<br><br> This resource <strong>Requires Acting User</strong>",
@@ -842,7 +842,7 @@
 	    "operations": [
 		{
 		    "nickname": "deny",
-		    "method": "GET",
+		    "method": "POST",
 		    "type": "",
 		    "summary": "DenyFriendRequest",
 		    "notes": "Deny a friend request.<br><br> This resource <strong>Requires Acting User</strong>",
@@ -881,7 +881,7 @@
 	    "operations": [
 		{
 		    "nickname": "setpings",
-		    "method": "GET",
+		    "method": "POST",
 		    "type": "",
 		    "summary": "Set whether to receive pings about a user",
 		    "notes": "Changes whether the acting user will receive pings (phone notifications) when the specified user checks in.<br><br> This resource <strong>Requires Acting User</strong>",
@@ -928,7 +928,7 @@
 	    "operations": [
 		{
 		    "nickname": "unfriend",
-		    "method": "GET",
+		    "method": "POST",
 		    "type": "",
 		    "summary": "Remove a Friend",
 		    "notes": "Cancels any relationship between the acting user and the specified user. Removes a friend, unfollows a celebrity, or cancels a pending friend request..<br><br> This resource <strong>Requires Acting User</strong>",
@@ -963,11 +963,11 @@
 	    ]
 	},
         {
-	    "path": "/{USER_ID}/update",
+	    "path": "/users/self/update",
 	    "operations": [
 		{
 		    "nickname": "update",
-		    "method": "GET",
+		    "method": "POST",
 		    "type": "",
 		    "summary": "Update user's photo",
 		    "notes": "Update user's photo.<br><br> This resource <strong>Requires Acting User</strong>",

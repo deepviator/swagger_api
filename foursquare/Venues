@@ -1,19 +1,19 @@
 {
     "swaggerVersion": "1.2",
-    "basePath": "https://itunes.apple.com",
+    "basePath": "https://api.foursquare.com/v2/venues",
     "authorizations": {
     },
     "apis": [
 	{
-	    "path": "/search",
+	    "path": "/{VENUE_ID}",
 	    "description": "",
 	    "operations": [
 		{
-		    "nickname": "SearchMedia",
+		    "nickname": "Venue Detail",
 		    "method": "GET",
 		    "type": "",
-		    "summary": "Search Media in iTunes",
-		    "notes": "To search for content from a field in your website and display the results in your website, you must create a search field that passes a fully-qualified URL content request to the iTunes Store, parse the JavaScript Object Notation (JSON) format returned from the search, and display the results in your website.",
+		    "summary": "Gives details about a venue, including location, mayorship, tags, tips, specials, and category. ",
+		    "notes": "Authenticated users will also receive information about who is here now. <br/>If the venue ID given is one that has been merged into another master venue, the response will show data about the master instead of giving you an error.",
 		    "consumes": [
 		    ],
 		    "produces": [
@@ -21,84 +21,20 @@
 		    ],
 		    "parameters": [
                         {
-	                    "name": "term",
+	                    "name": "VENUE_ID",
                             "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "The URL-encoded text string you want to search for.For example: jack+johnson.",
-			    "defaultValue": ""
+                            "paramType": "path" ,
+			    "description": "Required ID of venue to retrieve.",
+			    "defaultValue": "40a55d80f964a52020f31ee3"
                         },
                         {
-	                    "name": "country",
+	                    "name": "oauth_token",
                             "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "The two-letter country code for the store you want to search. The search uses the default store front for the specified country. For example: US.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "media",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The media type you want to search for. For example: movie.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "entity",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The type of results you want returned, relative to the specified media type. For example: movieArtist for a movie media type search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "attribute",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The attribute you want to search for in the stores, relative to the specified media type. For example, if you want to search for an artist by name specify entity=allArtist&attribute=allArtistTerm.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "callback",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The name of the Javascript callback function you want to use when returning search results to your website. For example: wsSearchCB.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "limit",
-                            "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The number of search results you want the iTunes Store to return. ",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "lang",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The language, English or Japanese, you want to use when returning search results. Specify the language using the five-letter codename. For example: en_us.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "version",
-                            "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The search result key version you want to receive back from your search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "explicit",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "A flag indicating whether or not you want to include explicit content in your search results.",
-			    "defaultValue": ""
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
                         }
 		    ],
 		    "responseMessages": [
@@ -109,15 +45,15 @@
 	    ]
 	},
 	{
-	    "path": "/lookup",
+	    "path": "/add",
 	    "description": "",
 	    "operations": [
 		{
-		    "nickname": "LookupMedia",
-		    "method": "GET",
+		    "nickname": "AddVenue",
+		    "method": "POST",
 		    "type": "",
-		    "summary": "Lookup Media in iTunes",
-		    "notes": "You can also create a lookup request to search for content in the stores based on iTunes IDs, UPCs/ EANs, and All Music Guide (AMG) IDs. ID-based lookups are faster and contain fewer false-positive results.",
+		    "summary": "Add Venue",
+		    "notes": "Allows Foursquare users to add a new venue. ",
 		    "consumes": [
 		    ],
 		    "produces": [
@@ -125,75 +61,243 @@
 		    ],
 		    "parameters": [
                         {
-	                    "name": "id",
-                            "required": false,
+	                    "name": "name",
+                            "required": true,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "Media ID No.",
+			    "description": "required the name of the venue",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "upc",
+	                    "name": "address",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "UPCs / EANs",
+			    "description": "The address of the venue.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "isbn",
+	                    "name": "crossStreet",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "ISBN No.",
+			    "description": "The nearest intersecting street or streets.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "amgArtistId",
+	                    "name": "city",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "AMG Artist",
+			    "description": "The city name where this venue is.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "amgAlbumId",
+	                    "name": "state",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "AMG Album Id.",
+			    "description": "The nearest state or province to the venue.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "amgVideoId",
+	                    "name": "zip",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "AMG Video Id.",
+			    "description": "The zip or postal code for the venue.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "entity",
+	                    "name": "phone",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "The type of results you want returned, relative to the specified media type. For example: movieArtist for a movie media type search.",
+			    "description": "The phone number of the venue.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "attribute",
+	                    "name": "twitter",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "The attribute you want to search for in the stores, relative to the specified media type. For example, if you want to search for an artist by name specify entity=allArtist&attribute=allArtistTerm.",
+			    "description": "The twitter handle of the venue.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "callback",
+	                    "name": "ll",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "required Latitude and longitude of the venue, as accurate as is known.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "primaryCategoryId",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "The name of the Javascript callback function you want to use when returning search results to your website. For example: wsSearchCB.",
+			    "description": "The ID of the category to which you want to assign this venue. ",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "description",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "A freeform description of the venue, up to 160 characters.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "url",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "The url of the homepage of the venue.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "ignoreDuplicates",
+                            "required": false,
+			    "type": "boolean",
+                            "paramType": "query",
+			    "description": "A boolean flag telling the server to ignore duplicates and force the addition of this venue.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "ignoreDuplicatesKey",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "Required if ignoreDuplicates is true. This key will be available in the response of the HTTP 409 error of the first (failed) attempt to add venue.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+                            "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+			}
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+	{
+	    "path": "/categories",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "Categories",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Returns a hierarchical list of categories applied to venues. ",
+		    "notes": "When designing client applications, please download this list only once per session, but also avoid caching this data for longer than a week to avoid stale information. <br><br>We have a reference category hierarchy available to make it easy for you to find categoryIds. This is as up-to-date as the responses from the API.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+	{
+	    "path": "/explore",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "Explore",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Explore Recommended and Popular Venues",
+		    "notes": "Returns a list of recommended venues near the current location. <br><br>If authenticated, the method will potentially personalize the ranking based on you and your friends. If you do not authenticate, you will not get this personalization.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "ll",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "required unless near is provided. Latitude and longitude of the user's location.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "near",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "required unless ll is provided. A string naming a place in the world. If the near string is not geocodable, returns a failed_geocode error. Otherwise, searches within the bounds of the geocode and adds a geocode object to the response.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "llAcc",
+                            "required": false,
+			    "type": "float",
+                            "paramType": "query",
+			    "description": "Accuracy of latitude and longitude, in meters.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "alt",
+                            "required": false,
+			    "type": "float",
+                            "paramType": "query",
+			    "description": "Altitude of the user's location, in meters.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "altAcc",
+                            "required": false,
+			    "type": "float",
+                            "paramType": "query",
+			    "description": "Accuracy of the user's altitude, in meters.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "radius",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "Radius to search within, in meters. If radius is not specified, a suggested radius will be used based on the density of venues in the area.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "section",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "One of food, drinks, coffee, shops, arts, outdoors, sights, trending or specials, nextVenues (venues frequently visited after a given venue), or topPicks (a mix of recommendations generated without a query from the user). Choosing one of these limits results to venues with the specified category or property.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "query",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "A term to be searched against a venue's tips, category, etc. The query parameter has no effect when a section is specified.",
 			    "defaultValue": ""
                         },
                         {
@@ -201,32 +305,1766 @@
                             "required": false,
 			    "type": "int",
                             "paramType": "query",
-			    "description": "The number of search results you want the iTunes Store to return. ",
+			    "description": "Number of results to return, up to 50.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "lang",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The language, English or Japanese, you want to use when returning search results. Specify the language using the five-letter codename. For example: en_us.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "version",
+	                    "name": "offset",
                             "required": false,
 			    "type": "int",
                             "paramType": "query",
-			    "description": "The search result key version you want to receive back from your search.",
+			    "description": "Used to page through results.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "explicit",
+	                    "name": "novelty",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "A flag indicating whether or not you want to include explicit content in your search results.",
+			    "description": "Pass new or old to limit results to places the acting user hasn't been or has been, respectively. Omitting this parameter returns a mixture of old and new venues.",
 			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "friendVisits",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "Pass visited or notvisited to limit results to places the acting user's friends have or haven't been, respectively. Omitting this parameter returns a mixture of venues to which the user's friends have or haven't been.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "time",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "Pass any to retrieve results for any time of day. Omitting this parameter returns results targeted to the current time of day.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "day",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "Pass any to retrieve results for any day of the week. Omitting this parameter returns results targeted to the current day of the week.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "venuePhotos",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "Boolean flag to include a photo in the response for each venue, if one is available. Default is 0 (no photos). Photos are returned as part of the venue JSON object.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "lastVenue",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "A venue ID to use in combination with the intent=nextVenues parameter, which returns venues users often visit after a given venue. If intent=nextVenues is specified but lastVenue is not, the user's last check-in will be used if it is within 2 hours. If the user has not checked in within the last 2 hours, no results will be returned.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "openNow",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "Boolean flag to only include venues that are open now. This prefers official provider hours but falls back to popular check-in hours.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "sortByDistance",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "Boolean flag to sort the results by distance instead of relevance.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "price",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "Comma separated list of price points. Currently the valid range of price points are [1,2,3,4], 1 being the least expensive, 4 being the most expensive. For food venues, in the United States, 1 is < $10 an entree, 2 is $10-$20 an entree, 3 is $20-$30 an entree, 4 is > $30 an entree.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "saved",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "Boolean flag to only include venues that the user has saved on their To-Do list or to another list.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "specials",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "Boolean flag to only include venues that have a special.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+                            "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+			}
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/managed",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "Managed",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Managed Venues",
+		    "notes": "Get a list of venues the current user manages. User must be venue manager",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "limit",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "Number of managed venues to return. Defaults to 100, maximum is 1000.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "offset",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "Number of venues to skip over for paging. Defaults to 0.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/search",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "SearchVenue",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Search Venue",
+		    "notes": "Returns a list of venues near the current location, optionally matching a search term. ",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "ll",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "required unless near is provided. Latitude and longitude of the user's location. (Required for query searches). Optional if using intent=global.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "near",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "required unless ll is provided. A string naming a place in the world. If the near string is not geocodable, returns a failed_geocode error. Otherwise, searches within the bounds of the geocode. Adds a geocode object to the response. (Required for query searches)",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "llAcc",
+                            "required": false,
+			    "type": "float",
+                            "paramType": "query",
+			    "description": "Accuracy of latitude and longitude, in meters. (Does not currently affect search results.)",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "alt",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "Altitude of the user's location, in meters. (Does not currently affect search results.)",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "altAcc",
+                            "required": false,
+			    "type": "float",
+                            "paramType": "query",
+			    "description": "Accuracy of the user's altitude, in meters. (Does not currently affect search results.)",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "query",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "A search term to be applied against venue names.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "limit",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "Number of results to return, up to 50.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "intent",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "One of the values below, indicating your intent in performing the search. If no value is specified, defaults to checkin. <a href=\"https://developer.foursquare.com/docs/venues/search\"> more </a>",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "radius",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "Limit results to venues within this many meters of the specified location. Defaults to a city-wide area. Only valid for requests with intent=browse, or requests with intent=checkin and categoryId or query. Does not apply to match intent requests. The maximum supported radius is currently 100,000 meters.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "sw",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "With ne, limits results to the bounding quadrangle defined by the latitude and longitude given by sw as its south-west corner, and ne as its north-east corner. The bounding quadrangle is only supported for intent=browse searches. Not valid with ll or radius. Bounding quadrangles with an area up to approximately 10,000 square kilometers are supported.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "ne",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "A freeform description of the venue, up to 160 characters.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "categoryId",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "A comma separated list of categories to limit results to. If you specify categoryId specifying a radius may improve results. If specifying a top-level category, all sub-categories will also match the query. Does not apply to match intent requests.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "url",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "A third-party URL which we will attempt to match against our map of venues to URLs.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "providerId",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "Identifier for a known third party that is part of our map of venues to URLs, used in conjunction with linkedId.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "linkedId",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "1002207971611 Identifier used by third party specified in providerId, which we will attempt to match against our map of venues to URLs.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+                            "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+			}
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/suggestcompletion",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "Suggest",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Suggest Completion Venues",
+		    "notes": "Returns a list of mini-venues partially matching the search term, near the location.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "ll",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "required unless near is provided. Latitude and longitude of the user's location. (Required for query searches). Optional if using intent=global.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "near",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "required unless ll is provided. A string naming a place in the world. If the near string is not geocodable, returns a failed_geocode error. Otherwise, searches within the bounds of the geocode. Adds a geocode object to the response. (Required for query searches)",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "llAcc",
+                            "required": false,
+			    "type": "float",
+                            "paramType": "query",
+			    "description": "Accuracy of latitude and longitude, in meters. (Does not currently affect search results.)",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "alt",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "Altitude of the user's location, in meters. (Does not currently affect search results.)",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "altAcc",
+                            "required": false,
+			    "type": "float",
+                            "paramType": "query",
+			    "description": "Accuracy of the user's altitude, in meters. (Does not currently affect search results.)",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "query",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "A search term to be applied against venue names.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "limit",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "Number of results to return, up to 50.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "radius",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "Limit results to venues within this many meters of the specified location. Defaults to a city-wide area. Only valid for requests with intent=browse, or requests with intent=checkin and categoryId or query. Does not apply to match intent requests. The maximum supported radius is currently 100,000 meters.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "sw",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "With ne, limits results to the bounding quadrangle defined by the latitude and longitude given by sw as its south-west corner, and ne as its north-east corner. The bounding quadrangle is only supported for intent=browse searches. Not valid with ll or radius. Bounding quadrangles with an area up to approximately 10,000 square kilometers are supported.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "ne",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "A freeform description of the venue, up to 160 characters.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+                            "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+			   
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/timeseries",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "Timeseries",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Venue Time Series Data",
+		    "notes": "Get daily venue stats for a list of venues over a time range.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "venueId",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "A comma-separated list of venue ids to retrieve series data for. The current user must be the manager of all venues specified.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "startAt",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The start of the time range to retrieve stats for (seconds since epoch).",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "endAt",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The end of the time range to retrieve stats for (seconds since epoch). If omitted, the current time is assumed.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "fields",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "Specifies which fields to return. May be one or more of totalCheckins, newCheckins, uniqueVisitors, sharing, genders, ages, hours, separated by commas.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/trending",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "Trending",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Trending Venues",
+		    "notes": "Returns a list of venues near the current location with the most people currently checked in. ",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "ll",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "required unless near is provided. Latitude and longitude of the user's location. (Required for query searches). Optional if using intent=global.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "limit",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "Number of results to return, up to 50.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "radius",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "Limit results to venues within this many meters of the specified location. Defaults to a city-wide area. Only valid for requests with intent=browse, or requests with intent=checkin and categoryId or query. Does not apply to match intent requests. The maximum supported radius is currently 100,000 meters.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+                            "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+			   
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{VENUE_ID}/events",
+	    "operations": [
+		{
+		    "nickname": "update",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Venue Events",
+		    "notes": "Allows you to access information about the current events at a place.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "VENUE_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "required The venue id for which events are being requested.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{VENUE_ID}/herenow",
+	    "operations": [
+		{
+		    "nickname": "herenow",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Venue Here Now",
+		    "notes": "Provides a count of how many people are at a given venue. ",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "VENUE_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "required ID of venue to retrieve.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "limit",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query" ,
+			    "description": "Number of results to return, up to 500.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "offset",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query" ,
+			    "description": "Used to page through results.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{VENUE_ID}/hours",
+	    "operations": [
+		{
+		    "nickname": "hours",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Venue Hours",
+		    "notes": "Returns hours for a venue. ",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "VENUE_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "required The venue id for which hours are being requested.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{VENUE_ID}/likes",
+	    "operations": [
+		{
+		    "nickname": "likes",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Users who have liked a venue",
+		    "notes": "Returns friends and a total count of users who have liked this venue.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "VENUE_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "required The venue id for which hours are being requested.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{VENUE_ID}/links",
+	    "operations": [
+		{
+		    "nickname": "links",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Links For a Venue",
+		    "notes": "Returns URLs or identifiers from third parties that have been applied to this venue, such as how the New York Times refers to this venue and a URL for additional information from nytimes.com. This is part of the <a href=\"https://developer.foursquare.com/overview/venues\">foursquare Venue Map</a>.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "VENUE_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "required The venue id for which hours are being requested.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{VENUE_ID}/listed",
+	    "operations": [
+		{
+		    "nickname": "listed",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Lists",
+		    "notes": "The lists that this venue appears on",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "VENUE_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "required The venue id for which hours are being requested.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "group",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "can be created, edited, followed, friends, other. If no acting user is present, only other is supported.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "limit",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "Number of results to return, up to 200.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "offset",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "Used to page through results. Must specify a group.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{VENUE_ID}/menu",
+	    "operations": [
+		{
+		    "nickname": "menu",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Venue Menu",
+		    "notes": "Returns menu information for a venue. <br><br>In some cases, menu information is provided by our partners. When displaying the information from a partner, you must attribute them using the attribution information included in the provider field. Not all menu information available on Foursquare is able to be redistributed through our API. ",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "VENUE_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "required The venue id for which menu is being requested.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{VENUE_ID}/nextvenues",
+	    "operations": [
+		{
+		    "nickname": "nextvenues",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Next Venues",
+		    "notes": "Returns venues that people often check in to after the current venue. Up to 5 venues are returned in each query, and results are sorted by how many people have visited that venue after the current one. Homes are never returned in results. ",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "VENUE_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "required ID of the venue you want to see next venue information about",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{VENUE_ID}/photos",
+	    "operations": [
+		{
+		    "nickname": "photos",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Photos from a Venue",
+		    "notes": "Returns photos for a venue.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "VENUE_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "required The venue you want photos for.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "group",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "If not specified, public venue photos are returned ordered by relevance. Pass venue for public venue photos, ordered by recency. Pass checkin for venue photos from friends (including non-public photos from recent checkins), ordered by recency. See our documentation on <a href=\"https://developer.foursquare.com/docs/responses/photo.html\"> photos </a> for information on how to handle the response and construct actual photo URLs.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "limit",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "Number of results to return, up to 200.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "offset",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "Used to page through results.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{VENUE_ID}/similar",
+	    "operations": [
+		{
+		    "nickname": "similar",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Similar Venues",
+		    "notes": "Returns a list of venues similar to the specified venue.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "VENUE_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "required The venue you want similar venues for.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{VENUE_ID}/stats",
+	    "operations": [
+		{
+		    "nickname": "stats",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Venue Stats",
+		    "notes": "Get venue stats over a given time range. Only available to the manager of a venue.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "VENUE_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "The venue id to retrieve stats for.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "startAt",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "The start of the time range to retrieve stats for (seconds since epoch). If omitted, all-time stats will be returned.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "endAt",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "The end of the time range to retrieve stats for (seconds since epoch). If omitted, the current time is assumed.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{VENUE_ID}/tips",
+	    "operations": [
+		{
+		    "nickname": "tips",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Tips from a Venue",
+		    "notes": "Returns tips for a venue.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "VENUE_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "The venue you want tips for.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "sort",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "One of friends, recent, or popular.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "limit",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "Number of results to return, up to 500.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "offset",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "Used to page through results.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{VENUE_ID}/claim",
+	    "operations": [
+		{
+		    "nickname": "claim",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Claim a Venue",
+		    "notes": "Claim a venue for the user. If your OAuth Consumer is set up with the proper privileges, you can use this endpoint to claim a venue on behalf of a user without the claim having to be approved by foursquare staff.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "VENUE_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "required The venue you want similar venues for.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "visible",
+                            "required": false,
+			    "type": "boolean",
+                            "paramType": "query" ,
+			    "description": "(optional, default true) whether role as manager is visible on the venue page",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{VENUE_ID}/dislike",
+	    "operations": [
+		{
+		    "nickname": "dislike",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Dislike a venue",
+		    "notes": "Allows the acting user to dislike or undo a previous dislike for a venue.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "VENUE_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "required The venue you want similar venues for.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "set",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query" ,
+			    "description": "If 1, dislike this venue. If 0 undo a previous dislike for this venue. Default value is 1.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{VENUE_ID}/edit",
+	    "operations": [
+		{
+		    "nickname": "edit",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Edit a Venue",
+		    "notes": "Allows you to make changes to a venue (acting user must be a superuser or venue manager). Any blank parameter deletes an old value, any unspecified parameter does nothing. ",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "VENUE_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "required The venue id to edit",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "name",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The name of the venue.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "address",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The address of the venue.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "crossStreet",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The nearest intersecting street or streets.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "city",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The city name where this venue is.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "state",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The nearest state or province to the venue.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "zip",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The zip or postal code for the venue.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "phone",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The phone number of the venue.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "ll",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "Latitude and longitude of the venue.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "primaryCategoryId",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The ID of the category to which you want to assign this venue.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "addCategoryIds",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "Comma-separated list of new category IDs to be assigned to this venue. If you are adding a new category to a venue and you want to make it primary, you should just use primaryCategoryId.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "removeCategoryIds",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "Comma-separated list of new category IDs to be removed from this venue.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "twitter",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The twitter handle of the venue.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "description",
+                            "required": false,
+			    "type": "body",
+                            "paramType": "query" ,
+			    "description": "A freeform description of the venue, up to 300 characters.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "url",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The url of the homepage of the venue.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "storeId",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "An identifier used by the manager of the venue to distinguish between venues of the same name. Only visible to managers.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "hours",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The hours for the venue, as a semi-colon separated list of open segments and named segments (e.g., brunch or happy hour). Open segments are formatted as day,start,end. Named segments additionally have a label, formatted as day,start,end,label. Days are formatted as integers with Monday = 1,...,Sunday = 7. Start and End are formatted as [+]HHMM format. Use 24 hour format (no colon), prefix with 0 for HH or MM less than 10. Use '+' prefix, i.e., +0230 to represent 2:30 am past midnight into the following day.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{VENUE_ID}/flag",
+	    "operations": [
+		{
+		    "nickname": "flag",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Flag a Venue",
+		    "notes": "Allows users to indicate a venue is incorrect in some way. <br><br>Flags are pushed into a moderation queue. If a closed flag is approved, the venue will no longer show up in search results. Moderators will attempt to correct cases of mislocated or duplicate venues as appropriate. If the user has the correct address for a mislocated venue, use <a href=\"https://developer.foursquare.com/docs/venues/proposeedit\">proposeedit</a> instead.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "VENUE_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "The venue id for which an edit is being proposed.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "problem",
+                            "required": true,
+			    "type": "int",
+                            "paramType": "query" ,
+			    "description": "required One of mislocated, closed, duplicate, inappropriate, doesnt_exist, event_over",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "venueId",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query" ,
+			    "description": "ID of the duplicated venue (for problem duplicate)",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{VENUE_ID}/like",
+	    "operations": [
+		{
+		    "nickname": "like",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Like or unlike a venue",
+		    "notes": "Allows the acting user to like or unlike a venue.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "VENUE_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "The venue to like or unlike.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "set",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query" ,
+			    "description": "If 1, like this venue. If 0 unlike (un-do a previous like) it. Default value is 1.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{VENUE_ID}/proposeedit",
+	    "operations": [
+		{
+		    "nickname": "proposeedit",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Propose an Edit to a Venue",
+		    "notes": "Allows you to propose a change to a venue. <br><br>If the user knows the correct venue information, use this method to save it. Otherwise, use <a href=\"https://developer.foursquare.com/docs/venues/flag\">flag</a> to flag the venue instead (you need not specify new venue info in that case).",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "VENUE_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "The venue id for which an edit is being proposed.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "name",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The name of the venue.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "address",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The address of the venue.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "crossStreet",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The nearest intersecting street or streets.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "city",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The city name where this venue is.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "state",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The nearest state or province to the venue.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "zip",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The zip or postal code for the venue.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "phone",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The phone number of the venue.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "twitter",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The twitter handle of the venue.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "description",
+                            "required": false,
+			    "type": "body",
+                            "paramType": "query" ,
+			    "description": "A freeform description of the venue, up to 300 characters.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "url",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The url of the homepage of the venue.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "menuUrl",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "A url where the menu of the venue can be found.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "facebookUrl",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The url for this venue's Facebook Page.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "ll",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "Latitude and longitude of the user's location, as accurate as is known.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "venuell",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "Latitude and longitude at which the venue should be located.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "primaryCategoryId",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The ID of the category to which you want to assign this venue.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "addCategoryIds",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "Comma-separated list of new category IDs to be assigned to this venue. If you are adding a new category to a venue and you want to make it primary, you should just use primaryCategoryId.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "removeCategoryIds",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "Comma-separated list of new category IDs to be removed from this venue.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "hours",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The hours for the venue, as a semi-colon separated list of open segments and named segments (e.g., brunch or happy hour). Open segments are formatted as day,start,end. Named segments additionally have a label, formatted as day,start,end,label. Days are formatted as integers with Monday = 1,...,Sunday = 7. Start and End are formatted as [+]HHMM format. Use 24 hour format (no colon), prefix with 0 for HH or MM less than 10. Use '+' prefix, i.e., +0230 to represent 2:30 am past midnight into the following day.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{VENUE_ID}/setrole",
+	    "operations": [
+		{
+		    "nickname": "setrole",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Set User or Page Role for a Venue",
+		    "notes": "Sets a user's or page's role for a venue.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "VENUE_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "The venue for which you want to add branding.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "userId",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": " The id of the user or brand page for which we are changing roles at this venue",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "role",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": " One of the values below, indicating the role that the user should receive at the venue.manager/employee/page/none",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "visible",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": " Determines whether managers are visible on the venue profile. Only applies to manager role.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{VENUE_ID}/setsinglelocation",
+	    "operations": [
+		{
+		    "nickname": "setsinglelocation",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Set Venue as a single location (not part of a chain).",
+		    "notes": "Sets a venue as a single location (not part of a chain).",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "VENUE_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "The venue for which you want to set as a single location.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
                         }
 		    ],
 		    "responseMessages": [

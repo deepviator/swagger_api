@@ -68,6 +68,6 @@
     },
     "info": {
         "title": "Foursquare API",
-	"description": "Foursquare API. Click <a href=\"https://developer.foursquare.com/\">here</a> to visit official Apple iTunes API documentation.<br> <br>The Foursquare API gives you access to our world-class places database and the ability to interact with Foursquare users and merchants. Start using the only location API you'll ever need."
+	"description": "Foursquare API. Click <a href=\"https://developer.foursquare.com/\">here</a> to visit official Foursquare API documentation.<br> <br>The Foursquare API gives you access to our world-class places database and the ability to interact with Foursquare users and merchants. Start using the only location API you'll ever need."
     }
 }
