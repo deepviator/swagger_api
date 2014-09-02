@@ -1,19 +1,19 @@
 {
     "swaggerVersion": "1.2",
-    "basePath": "https://itunes.apple.com",
+    "basePath": "https://api.foursquare.com/v2/tips",
     "authorizations": {
     },
     "apis": [
 	{
-	    "path": "/search",
+	    "path": "/{TIP_ID}",
 	    "description": "",
 	    "operations": [
 		{
-		    "nickname": "SearchMedia",
+		    "nickname": "Tips",
 		    "method": "GET",
 		    "type": "",
-		    "summary": "Search Media in iTunes",
-		    "notes": "To search for content from a field in your website and display the results in your website, you must create a search field that passes a fully-qualified URL content request to the iTunes Store, parse the JavaScript Object Notation (JSON) format returned from the search, and display the results in your website.",
+		    "summary": "Tip detail",
+		    "notes": "Gives details about a tip, including which users (especially friends) have marked the tip to-do.",
 		    "consumes": [
 		    ],
 		    "produces": [
@@ -21,84 +21,20 @@
 		    ],
 		    "parameters": [
                         {
-	                    "name": "term",
+	                    "name": "TIP_ID",
                             "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "The URL-encoded text string you want to search for.For example: jack+johnson.",
+                            "paramType": "path",
+			    "description": "ID of tip to retrieve.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "country",
+	                    "name": "oauth_token",
                             "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "The two-letter country code for the store you want to search. The search uses the default store front for the specified country. For example: US.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "media",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The media type you want to search for. For example: movie.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "entity",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The type of results you want returned, relative to the specified media type. For example: movieArtist for a movie media type search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "attribute",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The attribute you want to search for in the stores, relative to the specified media type. For example, if you want to search for an artist by name specify entity=allArtist&attribute=allArtistTerm.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "callback",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The name of the Javascript callback function you want to use when returning search results to your website. For example: wsSearchCB.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "limit",
-                            "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The number of search results you want the iTunes Store to return. ",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "lang",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The language, English or Japanese, you want to use when returning search results. Specify the language using the five-letter codename. For example: en_us.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "version",
-                            "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The search result key version you want to receive back from your search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "explicit",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "A flag indicating whether or not you want to include explicit content in your search results.",
-			    "defaultValue": ""
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
                         }
 		    ],
 		    "responseMessages": [
@@ -109,15 +45,15 @@
 	    ]
 	},
 	{
-	    "path": "/lookup",
+	    "path": "/add",
 	    "description": "",
 	    "operations": [
 		{
-		    "nickname": "LookupMedia",
-		    "method": "GET",
+		    "nickname": "AddTip",
+		    "method": "POST",
 		    "type": "",
-		    "summary": "Lookup Media in iTunes",
-		    "notes": "You can also create a lookup request to search for content in the stores based on iTunes IDs, UPCs/ EANs, and All Music Guide (AMG) IDs. ID-based lookups are faster and contain fewer false-positive results.",
+		    "summary": "Add a tipn",
+		    "notes": "Allows you to add a new tip at a venue.",
 		    "consumes": [
 		    ],
 		    "produces": [
@@ -125,75 +61,83 @@
 		    ],
 		    "parameters": [
                         {
-	                    "name": "id",
-                            "required": false,
+	                    "name": "venueId",
+                            "required": true,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "Media ID No.",
+			    "description": "The venue where you want to add this tip.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "upc",
-                            "required": false,
+	                    "name": "text",
+                            "required": true,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "UPCs / EANs",
+			    "description": "The text of the tip, up to 200 characters.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "isbn",
+	                    "name": "url",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "ISBN No.",
+			    "description": "A URL related to this tip.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "amgArtistId",
+	                    "name": "broadcast",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "AMG Artist",
+			    "description": "Whether to broadcast this tip. Send twitter if you want to send to twitter, facebook if you want to send to facebook, or twitter,facebook if you want to send to both.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "amgAlbumId",
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/search",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "SearchTips",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Search Nearby Tips",
+		    "notes": "Returns a list of tips near the area specified.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "ll",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "AMG Album Id.",
+			    "description": "required unless near is provided. Latitude and longitude of the user's location.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "amgVideoId",
+	                    "name": "near",
                             "required": false,
-			    "type": "string",
+			    "type": "int",
                             "paramType": "query",
-			    "description": "AMG Video Id.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "entity",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The type of results you want returned, relative to the specified media type. For example: movieArtist for a movie media type search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "attribute",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The attribute you want to search for in the stores, relative to the specified media type. For example, if you want to search for an artist by name specify entity=allArtist&attribute=allArtistTerm.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "callback",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The name of the Javascript callback function you want to use when returning search results to your website. For example: wsSearchCB.",
+			    "description": "required unless ll is provided. A string naming a place in the world. If the near string is not geocodable, returns a failed_geocode error. Otherwise, searches within the bounds of the <a href=\"https://developer.foursquare.com/docs/responses/geocode\">geocode</a> and adds a geocode object to the response.",
 			    "defaultValue": ""
                         },
                         {
@@ -201,32 +145,312 @@
                             "required": false,
 			    "type": "int",
                             "paramType": "query",
-			    "description": "The number of search results you want the iTunes Store to return. ",
+			    "description": "Number of results to return, up to 500.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "lang",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The language, English or Japanese, you want to use when returning search results. Specify the language using the five-letter codename. For example: en_us.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "version",
+	                    "name": "offset",
                             "required": false,
 			    "type": "int",
                             "paramType": "query",
-			    "description": "The search result key version you want to receive back from your search.",
+			    "description": "Used to page through results.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "explicit",
+	                    "name": "filter",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "A flag indicating whether or not you want to include explicit content in your search results.",
+			    "description": "If set to friends, only show nearby tips from friends.",
 			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "query",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "Only find tips matching the given term, cannot be used in conjunction with friends filter.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{TIP_ID}/likes",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "TipLikes",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Users who have liked a tip",
+		    "notes": "Returns friends and a total count of users who have liked this tip.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "{TIP_ID}",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The ID of the tip to get likes for..",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{TIP_ID}/listed",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "TipList",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Lists",
+		    "notes": "The lists that this tip appears on.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "{TIP_ID}",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "Identity of a tip to get lists for.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "group",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "can be created, edited, followed, friends, other. If no acting user is present, only other is supported.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{TIP_ID}/saves",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "TipList",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "WhoSaves",
+		    "notes": "Returns friends and a total count of users who have saved this tip.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "{TIP_ID}",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "Identity of a tip to get lists for.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{TIP_ID}/flag",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "FlagTip ",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Flag a tip as offensive, spam, or not relevant",
+		    "notes": "Allows the acting user to flag a tip as offensive, spam, or not relevant.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "TIP_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The tip to flag.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "comment",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "A comment explaining the flag.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "problem",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "The specific problem with the tip. Must be one of \"offensive\", \"spam\", or \"nolongerrelevant\".",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{TIP_ID}/like",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "LikeaTip",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Like or unlike a tip",
+		    "notes": "Allows the acting user to like or unlike a tip.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "TIP_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The tip to like or unlike.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "set",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "If 1, like this tip. If 0 unlike (un-do a previous like) it. Default value is 1.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{TIP_ID}/unmark",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "unmarkTip",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Unmark a tip as to-do",
+		    "notes": "Allows you to remove a tip from your to-do list. ",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "TIP_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The tip you want to unmark.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
                         }
 		    ],
 		    "responseMessages": [
@@ -236,6 +460,7 @@
 		}
 	    ]
 	}
+
     ],
     "models": {
 }

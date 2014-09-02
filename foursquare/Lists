@@ -1,19 +1,19 @@
 {
     "swaggerVersion": "1.2",
-    "basePath": "https://itunes.apple.com",
+    "basePath": "https://api.foursquare.com/v2/lists",
     "authorizations": {
     },
     "apis": [
 	{
-	    "path": "/search",
+	    "path": "/{LIST_ID}",
 	    "description": "",
 	    "operations": [
 		{
-		    "nickname": "SearchMedia",
+		    "nickname": "Lists",
 		    "method": "GET",
 		    "type": "",
-		    "summary": "Search Media in iTunes",
-		    "notes": "To search for content from a field in your website and display the results in your website, you must create a search field that passes a fully-qualified URL content request to the iTunes Store, parse the JavaScript Object Notation (JSON) format returned from the search, and display the results in your website.",
+		    "summary": "List Detail",
+		    "notes": "Gives details about a tip, including which users (especially friends) have marked the tip to-do.",
 		    "consumes": [
 		    ],
 		    "produces": [
@@ -21,51 +21,11 @@
 		    ],
 		    "parameters": [
                         {
-	                    "name": "term",
+	                    "name": "LIST_ID",
                             "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "The URL-encoded text string you want to search for.For example: jack+johnson.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "country",
-                            "required": true,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The two-letter country code for the store you want to search. The search uses the default store front for the specified country. For example: US.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "media",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The media type you want to search for. For example: movie.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "entity",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The type of results you want returned, relative to the specified media type. For example: movieArtist for a movie media type search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "attribute",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The attribute you want to search for in the stores, relative to the specified media type. For example, if you want to search for an artist by name specify entity=allArtist&attribute=allArtistTerm.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "callback",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The name of the Javascript callback function you want to use when returning search results to your website. For example: wsSearchCB.",
+                            "paramType": "path",
+			    "description": "ID for a user-created (e.g. /v2/lists/12381902N) or followed list or one of either USER_ID/tips (e.g. /v2/lists/32/tips) or USER_ID/todos.",
 			    "defaultValue": ""
                         },
                         {
@@ -73,32 +33,48 @@
                             "required": false,
 			    "type": "int",
                             "paramType": "query",
-			    "description": "The number of search results you want the iTunes Store to return. ",
+			    "description": "Number of results to return, up to 200.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "lang",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The language, English or Japanese, you want to use when returning search results. Specify the language using the five-letter codename. For example: en_us.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "version",
+	                    "name": "offset",
                             "required": false,
 			    "type": "int",
                             "paramType": "query",
-			    "description": "The search result key version you want to receive back from your search.",
+			    "description": "The number of results to skip. Used to page through results.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "explicit",
+	                    "name": "llBounds",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "A flag indicating whether or not you want to include explicit content in your search results.",
+			    "description": "Restricts the returned results to the input bounding box.",
 			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "categoryId",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "Restricts the returned results to venues matching the input category id.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "sort",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "Sorts the list items. Possible values are recent and nearby. recent sorts the list items by the date added to the list. nearby sorts the list items by the distance from the center of the provided llBounds.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
                         }
 		    ],
 		    "responseMessages": [
@@ -109,15 +85,15 @@
 	    ]
 	},
 	{
-	    "path": "/lookup",
+	    "path": "/add",
 	    "description": "",
 	    "operations": [
 		{
-		    "nickname": "LookupMedia",
-		    "method": "GET",
+		    "nickname": "AddTip",
+		    "method": "POST",
 		    "type": "",
-		    "summary": "Lookup Media in iTunes",
-		    "notes": "You can also create a lookup request to search for content in the stores based on iTunes IDs, UPCs/ EANs, and All Music Guide (AMG) IDs. ID-based lookups are faster and contain fewer false-positive results.",
+		    "summary": "Add a tips",
+		    "notes": "Allows you to add a new tip at a venue.",
 		    "consumes": [
 		    ],
 		    "produces": [
@@ -125,108 +101,804 @@
 		    ],
 		    "parameters": [
                         {
-	                    "name": "id",
+	                    "name": "name",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "The name of the list.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "description",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "Media ID No.",
+			    "description": "The description of the list.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "upc",
+	                    "name": "collaborative",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "UPCs / EANs",
+			    "description": "Boolean indicating if this list can be edited by friends.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "isbn",
+	                    "name": "photoId",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "ISBN No.",
+			    "description": "The id of a photo that should be set as the list photo.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "amgArtistId",
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{LIST_ID}/followers",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "followers",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "List Followers",
+		    "notes": "Returns a count and items of users following this list. ",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "LIST_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "ID for a user-created list.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{LIST_ID}/{ITEM_ID}",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "ItemDetail",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "List Item Detail",
+		    "notes": "Gives details about a list item.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "LIST_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "ID for a user-created or followed list.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "ITEM_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "ID for an item in the parent list.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{LIST_ID}/saves",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "WhoSaveList",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Users who have saved a list",
+		    "notes": "Returns friends and a total count of users who have saved this list.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "LIST_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The ID of the list to get saves for.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{LIST_ID}/suggestphoto",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "SuggestPhoto",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Suggest Photo",
+		    "notes": "Suggests photos that may be appropriate for this item. ",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "LIST_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "ID for a user-created list.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "itemId",
+                            "required": true,
+			    "type": "query",
+                            "paramType": "path",
+			    "description": "ID of item on this list.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{LIST_ID}/suggesttip",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "SuggestTip",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Suggest Tip",
+		    "notes": "Suggests tips that may be appropriate for this item.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "LIST_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "ID for a user-created list.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "itemId",
+                            "required": true,
+			    "type": "query",
+                            "paramType": "path",
+			    "description": "ID of item.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{LIST_ID}/suggestvenues",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "SuggestVenues",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Suggest Venues",
+		    "notes": "Suggests venues that may be appropriate for this list.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "LIST_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "ID for a user-created list.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{LIST_ID}/additem",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "SearchTips",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Search Nearby Tips",
+		    "notes": "Returns a list of tips near the area specified.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "LIST_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "ID for a user-created or followed list as well as one of either USER_ID/tips or USER_ID/todos.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "venueId",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "AMG Artist",
+			    "description": "A venue to add to the list.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "amgAlbumId",
+	                    "name": "url",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "AMG Album Id.",
+			    "description": "If adding a new tip via text, this can associate a url with the tip.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "amgVideoId",
+	                    "name": "tipId",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "AMG Video Id.",
+			    "description": "Used to add a tip to a list. Cannot be used in conjunction with the text and url fields.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "entity",
+	                    "name": "listId",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "The type of results you want returned, relative to the specified media type. For example: movieArtist for a movie media type search.",
+			    "description": "Used in conjuction with itemId, the id for a user created or followed list as well as one of either USER_ID/tips or USER_ID/todos.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "attribute",
+	                    "name": "itemId",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "The attribute you want to search for in the stores, relative to the specified media type. For example, if you want to search for an artist by name specify entity=allArtist&attribute=allArtistTerm.",
+			    "description": "Used in conjuction with listId, the id of an item on that list that we wish to copy to this list.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "callback",
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{LIST_ID}/deleteitem",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "DeleteItem",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Delete an Item",
+		    "notes": "Allows you to delete items from a list. One of itemId, venueId, or tipId must be provided.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "{LIST_ID}",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "ID for a user-created or followed list or one of either USER_ID/tips or USER_ID/todos.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "itemId",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "The name of the Javascript callback function you want to use when returning search results to your website. For example: wsSearchCB.",
+			    "description": "ID of the item to delete.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "limit",
-                            "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The number of search results you want the iTunes Store to return. ",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "lang",
+	                    "name": "venueId",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "The language, English or Japanese, you want to use when returning search results. Specify the language using the five-letter codename. For example: en_us.",
+			    "description": "ID of a venue to be deleted. If the venue is on the list multiple times, e.g. multiple tips at the same venue, all items will be removed.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "version",
-                            "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The search result key version you want to receive back from your search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "explicit",
+	                    "name": "tipId",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "A flag indicating whether or not you want to include explicit content in your search results.",
+			    "description": "ID of a tip to be deleted.",
 			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{LIST_ID}/follow",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "FollowList",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Follow a List",
+		    "notes": "Allows you to follow a list.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "{LIST_ID}",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "ID of a user-created list.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{LIST_ID}/moveitem",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "MoveItem",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Move Item",
+		    "notes": "Allows you to move an item on a list. One of beforeId or afterId must be specified.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "{LIST_ID}",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "ID of a user-created list..",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "itemId",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "ID of a user-created list.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "beforeId",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "Move itemId before beforeId.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "afterId",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "Move itemId after afterId.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{LIST_ID}/share",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "ShareList ",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Share a List",
+		    "notes": "Share a user-created list to twitter or facebook.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "LIST_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The tip to flag.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "broadcast",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "Where to broadcast this list. Send twitter if you want to send to twitter, facebook if you want to send to facebook, or twitter,facebook if you want to send to both.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "message",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "A personal note to include with the share.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{LIST_ID}/unfollow",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "UnfollowList",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Unfollow a List",
+		    "notes": "Allows you to unfollow a list.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "LIST_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "ID of a user-created list.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{LIST_ID}/update",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "UpdatesList",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Updates a list",
+		    "notes": "Allows you to update a list.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "LIST_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The tip you want to unmark.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "name",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "If present and a non-empty value, updates the List name.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "description",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "If present and a non-empty value, updates the List description. If present and empty, will remove the List description.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "collaborative",
+                            "required": false,
+			    "type": "boolean",
+                            "paramType": "query",
+			    "description": "Boolean indicating if this list can be edited by friends. Once this has been set to true for a list, authenticated friends can edit the list via <a href=\"https://developer.foursquare.com/docs/lists/additem\">additem</a>, <a href=\"https://developer.foursquare.com/docs/lists/deleteitem\">deleteitem</a>, etc.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "photoId",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "If present and a non-empty value, updates the List photo. If present and empty, will remove the List photo.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{LIST_ID}/updateitem",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "UpdateListItem",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Update a List Item",
+		    "notes": "Allows you to add or remove photos and tips from items on user-created lists.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "LIST_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "ID for a user-created list.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "itemId",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "The id of an item on this list.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "tipId",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "If present and a non-empty value, adds or replaces a tip on this item. If present and empty, will remove the tip on this item.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "text",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "If present creates a public tip on the venue and replaces any existing tip on the item. Cannot be used in conjuction with tipId or photoId",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "url",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "If adding a new tip via text, this can associate a url with the tip.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "photoId",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "If present and a non-empty value, updates the List photo. If present and empty, will remove the List photo.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
                         }
 		    ],
 		    "responseMessages": [
@@ -236,6 +908,7 @@
 		}
 	    ]
 	}
+
     ],
     "models": {
 }
