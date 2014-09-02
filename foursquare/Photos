@@ -1,19 +1,19 @@
 {
     "swaggerVersion": "1.2",
-    "basePath": "https://itunes.apple.com",
+    "basePath": "https://api.foursquare.com/v2/photos",
     "authorizations": {
     },
     "apis": [
 	{
-	    "path": "/search",
+	    "path": "/{PHOTO_ID}",
 	    "description": "",
 	    "operations": [
 		{
-		    "nickname": "SearchMedia",
+		    "nickname": "PhotoDetails",
 		    "method": "GET",
 		    "type": "",
-		    "summary": "Search Media in iTunes",
-		    "notes": "To search for content from a field in your website and display the results in your website, you must create a search field that passes a fully-qualified URL content request to the iTunes Store, parse the JavaScript Object Notation (JSON) format returned from the search, and display the results in your website.",
+		    "summary": "Photo details",
+		    "notes": "Get details of a photo.",
 		    "consumes": [
 		    ],
 		    "produces": [
@@ -21,84 +21,20 @@
 		    ],
 		    "parameters": [
                         {
-	                    "name": "term",
+	                    "name": "PHOTO_ID",
                             "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "The URL-encoded text string you want to search for.For example: jack+johnson.",
+                            "paramType": "path",
+			    "description": "The ID of the photo to retrieve additional information for.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "country",
+	                    "name": "oauth_token",
                             "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "The two-letter country code for the store you want to search. The search uses the default store front for the specified country. For example: US.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "media",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The media type you want to search for. For example: movie.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "entity",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The type of results you want returned, relative to the specified media type. For example: movieArtist for a movie media type search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "attribute",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The attribute you want to search for in the stores, relative to the specified media type. For example, if you want to search for an artist by name specify entity=allArtist&attribute=allArtistTerm.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "callback",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The name of the Javascript callback function you want to use when returning search results to your website. For example: wsSearchCB.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "limit",
-                            "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The number of search results you want the iTunes Store to return. ",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "lang",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The language, English or Japanese, you want to use when returning search results. Specify the language using the five-letter codename. For example: en_us.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "version",
-                            "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The search result key version you want to receive back from your search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "explicit",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "A flag indicating whether or not you want to include explicit content in your search results.",
-			    "defaultValue": ""
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
                         }
 		    ],
 		    "responseMessages": [
@@ -109,15 +45,15 @@
 	    ]
 	},
 	{
-	    "path": "/lookup",
+	    "path": "/add",
 	    "description": "",
 	    "operations": [
 		{
-		    "nickname": "LookupMedia",
-		    "method": "GET",
+		    "nickname": "AddPhoto",
+		    "method": "POST",
 		    "type": "",
-		    "summary": "Lookup Media in iTunes",
-		    "notes": "You can also create a lookup request to search for content in the stores based on iTunes IDs, UPCs/ EANs, and All Music Guide (AMG) IDs. ID-based lookups are faster and contain fewer false-positive results.",
+		    "summary": "Add a Photo",
+		    "notes": "Allows users to add a new photo to a checkin, tip, venue, or page update in general.",
 		    "consumes": [
 		    ],
 		    "produces": [
@@ -125,108 +61,164 @@
 		    ],
 		    "parameters": [
                         {
-	                    "name": "id",
+	                    "name": "checkinId",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "Media ID No.",
+			    "description": "the ID of a checkin owned by the user.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "upc",
+	                    "name": "tipId",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "UPCs / EANs",
+			    "description": "the ID of a tip owned by the user.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "isbn",
+	                    "name": "venueId",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "ISBN No.",
+			    "description": "the ID of a venue, provided only when adding a public photo of the venue in general, rather than a photo for a private checkin, tip, or page update.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "amgArtistId",
+	                    "name": "pageId",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "AMG Artist",
+			    "description": "the ID of a page, provided only when adding a photo that will be in an update for that page (no other ids should be specified).",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "amgAlbumId",
+	                    "name": "broadcast",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "AMG Album Id.",
+			    "description": "Whether to broadcast this photo. Send twitter if you want to send to twitter, facebook if you want to send to facebook, or twitter,facebook if you want to send to both.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "amgVideoId",
+	                    "name": "public",
                             "required": false,
-			    "type": "string",
+			    "type": "int",
                             "paramType": "query",
-			    "description": "AMG Video Id.",
+			    "description": "When the checkinId is also provided (meaning this is a photo attached to a checkin), this parameter allows for making the photo public and viewable at the venue. Valid values are 1 and 0 (default).<br>Note that photos attached to venues, tips, and pages (updates) are always public.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "entity",
+	                    "name": "ll",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "The type of results you want returned, relative to the specified media type. For example: movieArtist for a movie media type search.",
+			    "description": "Latitude and longitude of the user's location.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "attribute",
+	                    "name": "llAcc",
                             "required": false,
-			    "type": "string",
+			    "type": "int",
                             "paramType": "query",
-			    "description": "The attribute you want to search for in the stores, relative to the specified media type. For example, if you want to search for an artist by name specify entity=allArtist&attribute=allArtistTerm.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "callback",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The name of the Javascript callback function you want to use when returning search results to your website. For example: wsSearchCB.",
+			    "description": "Accuracy of the user's latitude and longitude, in meters.",
 			    "defaultValue": ""
                         },
                         {
 	                    "name": "limit",
                             "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The number of search results you want the iTunes Store to return. ",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "lang",
-                            "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "The language, English or Japanese, you want to use when returning search results. Specify the language using the five-letter codename. For example: en_us.",
+			    "description": " ",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "version",
+	                    "name": "alt",
                             "required": false,
 			    "type": "int",
                             "paramType": "query",
-			    "description": "The search result key version you want to receive back from your search.",
+			    "description": "Altitude of the user's location, in meters.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "explicit",
+	                    "name": "altAcc",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "Vertical accuracy of the user's location, in meters.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "postUrl",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "A flag indicating whether or not you want to include explicit content in your search results.",
+			    "description": "A link for more details about the photo. This page will be opened in an embedded web view in the foursquare application, unless contentId is specified and a <a href=\"https://developer.foursquare.com/resources/client#appintegration\">native link handler</a> is registered and present. We support the following URL schemes: http, https, foursquare, mailto, tel, and sms.",
 			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "postContentId",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "Identifier for the photo post to be used in a <a href=\"https://developer.foursquare.com/resources/client#appintegration\">native link</a>, up to 50 characters. A checkinId and postUrl must also be specified in the request.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "postText",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "Text for the photo post, up to 200 characters. A checkinId must also be specified in the request.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/marknotificationsread",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "MNTR",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Mark notification tray as read",
+		    "notes": "Mark notification tray notifications as read up, to a certain timestamp.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "highWatermark",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "The timestamp of the most recent notification that the user viewed.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
                         }
 		    ],
 		    "responseMessages": [

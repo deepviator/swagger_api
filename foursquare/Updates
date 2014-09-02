@@ -1,19 +1,19 @@
 {
     "swaggerVersion": "1.2",
-    "basePath": "https://itunes.apple.com",
+    "basePath": "https://api.foursquare.com/v2/updates",
     "authorizations": {
     },
     "apis": [
 	{
-	    "path": "/search",
+	    "path": "/{UPDATE_ID}",
 	    "description": "",
 	    "operations": [
 		{
-		    "nickname": "SearchMedia",
+		    "nickname": "UpdateDetail",
 		    "method": "GET",
 		    "type": "",
-		    "summary": "Search Media in iTunes",
-		    "notes": "To search for content from a field in your website and display the results in your website, you must create a search field that passes a fully-qualified URL content request to the iTunes Store, parse the JavaScript Object Notation (JSON) format returned from the search, and display the results in your website.",
+		    "summary": "Update detail",
+		    "notes": "Update detail.",
 		    "consumes": [
 		    ],
 		    "produces": [
@@ -21,84 +21,20 @@
 		    ],
 		    "parameters": [
                         {
-	                    "name": "term",
+	                    "name": "UPDATE_ID",
                             "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "The URL-encoded text string you want to search for.For example: jack+johnson.",
+                            "paramType": "path",
+			    "description": "The ID of the update to retrieve.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "country",
+	                    "name": "oauth_token",
                             "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "The two-letter country code for the store you want to search. The search uses the default store front for the specified country. For example: US.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "media",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The media type you want to search for. For example: movie.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "entity",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The type of results you want returned, relative to the specified media type. For example: movieArtist for a movie media type search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "attribute",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The attribute you want to search for in the stores, relative to the specified media type. For example, if you want to search for an artist by name specify entity=allArtist&attribute=allArtistTerm.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "callback",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The name of the Javascript callback function you want to use when returning search results to your website. For example: wsSearchCB.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "limit",
-                            "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The number of search results you want the iTunes Store to return. ",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "lang",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The language, English or Japanese, you want to use when returning search results. Specify the language using the five-letter codename. For example: en_us.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "version",
-                            "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The search result key version you want to receive back from your search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "explicit",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "A flag indicating whether or not you want to include explicit content in your search results.",
-			    "defaultValue": ""
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
                         }
 		    ],
 		    "responseMessages": [
@@ -109,15 +45,15 @@
 	    ]
 	},
 	{
-	    "path": "/lookup",
+	    "path": "/notifications",
 	    "description": "",
 	    "operations": [
 		{
-		    "nickname": "LookupMedia",
+		    "nickname": "NotificationTray",
 		    "method": "GET",
 		    "type": "",
-		    "summary": "Lookup Media in iTunes",
-		    "notes": "You can also create a lookup request to search for content in the stores based on iTunes IDs, UPCs/ EANs, and All Music Guide (AMG) IDs. ID-based lookups are faster and contain fewer false-positive results.",
+		    "summary": "Notification tray",
+		    "notes": "Retrieve a user's notification tray notifications.",
 		    "consumes": [
 		    ],
 		    "produces": [
@@ -125,108 +61,60 @@
 		    ],
 		    "parameters": [
                         {
-	                    "name": "id",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "Media ID No.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "upc",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "UPCs / EANs",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "isbn",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "ISBN No.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "amgArtistId",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "AMG Artist",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "amgAlbumId",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "AMG Album Id.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "amgVideoId",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "AMG Video Id.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "entity",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The type of results you want returned, relative to the specified media type. For example: movieArtist for a movie media type search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "attribute",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The attribute you want to search for in the stores, relative to the specified media type. For example, if you want to search for an artist by name specify entity=allArtist&attribute=allArtistTerm.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "callback",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The name of the Javascript callback function you want to use when returning search results to your website. For example: wsSearchCB.",
-			    "defaultValue": ""
-                        },
-                        {
 	                    "name": "limit",
                             "required": false,
 			    "type": "int",
                             "paramType": "query",
-			    "description": "The number of search results you want the iTunes Store to return. ",
+			    "description": "Maximum number of results to return, up to 99. Notifications are grouped over time, so there will usually be fewer than 99 results available at any given time. offset 0 Used to page through results. Only the 99 most recent notifications are visible, so offset must be no more than 99 - limit.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "lang",
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/marknotificationsread",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "MNTR",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Mark notification tray as read",
+		    "notes": "Mark notification tray notifications as read up, to a certain timestamp.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "highWatermark",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "The language, English or Japanese, you want to use when returning search results. Specify the language using the five-letter codename. For example: en_us.",
+			    "description": "The timestamp of the most recent notification that the user viewed.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "version",
-                            "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The search result key version you want to receive back from your search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "explicit",
-                            "required": false,
+	                    "name": "oauth_token",
+                            "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "A flag indicating whether or not you want to include explicit content in your search results.",
-			    "defaultValue": ""
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
                         }
 		    ],
 		    "responseMessages": [
