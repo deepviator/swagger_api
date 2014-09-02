@@ -1,19 +1,19 @@
 {
     "swaggerVersion": "1.2",
-    "basePath": "https://itunes.apple.com",
+    "basePath": "https://api.foursquare.com/v2/checkins",
     "authorizations": {
     },
     "apis": [
 	{
-	    "path": "/search",
+	    "path": "/{CHECKIN_ID}",
 	    "description": "",
 	    "operations": [
 		{
-		    "nickname": "SearchMedia",
+		    "nickname": "Check-ins",
 		    "method": "GET",
 		    "type": "",
-		    "summary": "Search Media in iTunes",
-		    "notes": "To search for content from a field in your website and display the results in your website, you must create a search field that passes a fully-qualified URL content request to the iTunes Store, parse the JavaScript Object Notation (JSON) format returned from the search, and display the results in your website.",
+		    "summary": "Check-in Details",
+		    "notes": "Get details of a checkin.",
 		    "consumes": [
 		    ],
 		    "produces": [
@@ -21,84 +21,28 @@
 		    ],
 		    "parameters": [
                         {
-	                    "name": "term",
+	                    "name": "CHECKIN_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The ID of the checkin to retrieve additional information for.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "signature",
                             "required": true,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "The URL-encoded text string you want to search for.For example: jack+johnson.",
+			    "description": "When checkins are sent to public feeds such as Twitter, foursquare appends a signature (s=XXXXXX) allowing users to bypass the friends-only access check on checkins. The same value can be used here for programmatic access to otherwise inaccessible checkins. Callers should use the <a href=\"https://code.google.com/p/bitly-api/wiki/ApiDocumentation\">bit.ly API</a> to first expand 4sq.com links.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "country",
+	                    "name": "oauth_token",
                             "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "The two-letter country code for the store you want to search. The search uses the default store front for the specified country. For example: US.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "media",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The media type you want to search for. For example: movie.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "entity",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The type of results you want returned, relative to the specified media type. For example: movieArtist for a movie media type search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "attribute",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The attribute you want to search for in the stores, relative to the specified media type. For example, if you want to search for an artist by name specify entity=allArtist&attribute=allArtistTerm.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "callback",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The name of the Javascript callback function you want to use when returning search results to your website. For example: wsSearchCB.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "limit",
-                            "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The number of search results you want the iTunes Store to return. ",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "lang",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The language, English or Japanese, you want to use when returning search results. Specify the language using the five-letter codename. For example: en_us.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "version",
-                            "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The search result key version you want to receive back from your search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "explicit",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "A flag indicating whether or not you want to include explicit content in your search results.",
-			    "defaultValue": ""
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
                         }
 		    ],
 		    "responseMessages": [
@@ -109,15 +53,15 @@
 	    ]
 	},
 	{
-	    "path": "/lookup",
+	    "path": "/add",
 	    "description": "",
 	    "operations": [
 		{
-		    "nickname": "LookupMedia",
-		    "method": "GET",
+		    "nickname": "CreateCheckin",
+		    "method": "POST",
 		    "type": "",
-		    "summary": "Lookup Media in iTunes",
-		    "notes": "You can also create a lookup request to search for content in the stores based on iTunes IDs, UPCs/ EANs, and All Music Guide (AMG) IDs. ID-based lookups are faster and contain fewer false-positive results.",
+		    "summary": "Create a check-in",
+		    "notes": "Allows you to check in to a place.",
 		    "consumes": [
 		    ],
 		    "produces": [
@@ -125,75 +69,115 @@
 		    ],
 		    "parameters": [
                         {
-	                    "name": "id",
-                            "required": false,
+	                    "name": "venueId",
+                            "required": true,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "Media ID No.",
+			    "description": "The venue where the user is checking in. Find venue IDs by searching or from historical APIs.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "upc",
+	                    "name": "eventId",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "UPCs / EANs",
+			    "description": "The event the user is checking in to.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "isbn",
+	                    "name": "shout",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "ISBN No.",
+			    "description": "A message about your check-in. The maximum length of this field is 140 characters.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "amgArtistId",
+	                    "name": "mentions",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "AMG Artist",
+			    "description": "Mentions in your check-in. This parameter is a semicolon-delimited list of mentions. A single mention is of the form \"start,end,userid\", where start is the index of the first character in the shout representing the mention, end is the index of the first character in the shout after the mention, and userid is the userid of the user being mentioned. If userid is prefixed with \"fbu-\", this indicates a Facebook userid that is being mention. Character indices in shouts are 0-based.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "amgAlbumId",
+	                    "name": "broadcast",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "AMG Album Id.",
+			    "description": "Who to broadcast this check-in to. Accepts a comma-delimited list of values:<ul><li>private (off the grid) or public (share with friends)</li><li>facebook share on facebook</li><li>twitter share on twitter</li><li>followers share with followers (celebrity mode users only)</li></ul>If no valid value is found, the default is public.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "amgVideoId",
+	                    "name": "ll",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "AMG Video Id.",
+			    "description": "Latitude and longitude of the user's location. Only specify this field if you have a GPS or other device reported location for the user at the time of check-in.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "entity",
+	                    "name": "llAcc",
                             "required": false,
-			    "type": "string",
+			    "type": "int",
                             "paramType": "query",
-			    "description": "The type of results you want returned, relative to the specified media type. For example: movieArtist for a movie media type search.",
+			    "description": "Accuracy of the user's latitude and longitude, in meters.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "attribute",
+	                    "name": "alt",
                             "required": false,
-			    "type": "string",
+			    "type": "int",
                             "paramType": "query",
-			    "description": "The attribute you want to search for in the stores, relative to the specified media type. For example, if you want to search for an artist by name specify entity=allArtist&attribute=allArtistTerm.",
+			    "description": "Altitude of the user's location, in meters.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "callback",
+	                    "name": "altAcc",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "Vertical accuracy of the user's location, in meters.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/recent",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "recent",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Recent checkins by friends",
+		    "notes": "Returns a list of recent checkins from friends.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "ll",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "The name of the Javascript callback function you want to use when returning search results to your website. For example: wsSearchCB.",
+			    "description": "Latitude and longitude of the user's location, so response can include distance.",
 			    "defaultValue": ""
                         },
                         {
@@ -201,32 +185,280 @@
                             "required": false,
 			    "type": "int",
                             "paramType": "query",
-			    "description": "The number of search results you want the iTunes Store to return. ",
+			    "description": "Number of results to return, up to 100.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "lang",
+	                    "name": "afterTimestamp",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "The language, English or Japanese, you want to use when returning search results. Specify the language using the five-letter codename. For example: en_us.",
+			    "description": "Seconds after which to look for checkins, e.g. for looking for new checkins since the last fetch. If more than limit results are new since then, this is ignored. Checkins created prior to this timestamp will still be returned if they have new comments or photos, making it easier to poll for all new activity.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "version",
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{CHECKIN_ID}/likes",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "likes",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Users who have liked a checkin",
+		    "notes": "Returns friends and a total count of users who have liked this checkin.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "{CHECKIN_ID}",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The ID of the checkin to get likes for.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{CHECKIN_ID}/addcomment",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "addcomment",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Add a comment to a check-in",
+		    "notes": "Comment on a checkin-in.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "CHECKIN_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The ID of the checkin to add a comment to.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "text",
                             "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "The text of the comment, up to 200 characters.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "mentions",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "Mentions in your check-in. This parameter is a semicolon-delimited list of mentions. A single mention is of the form \"start,end,userid\", where start is the index of the first character in the shout representing the mention, end is the index of the first character in the shout after the mention, and userid is the userid of the user being mentioned. Character indices in shouts are 0-based.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{CHECKIN_ID}/addpost",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "AddPost",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Add a Post",
+		    "notes": "Post user generated content from an external app to a check-in. This post will be accessible to anyone who can view the details of the check-in. ",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "CHECKIN_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The ID of the checkin to add a post to.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "text",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "The text of the post, up to 200 characters.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "url",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "Link for more details. This page will be opened in an embedded web view in the foursquare application, unless contentId is specified and a <a href=\"https://developer.foursquare.com/resources/client#appintegration\">native link handler</a> is registered and present. We support the following URL schemes: http, https, foursquare, mailto, tel, and sms.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "contentId",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "Identifier for the post to be used in a <a href=\"https://developer.foursquare.com/resources/client#appintegration\">native link</a>, up to 50 characters. A url must also be specified in the request.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{CHECKIN_ID}/deletecomment",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "deletecomment",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Remove commment from check-in",
+		    "notes": "Remove a comment from a checkin, if the acting user is the author or the owner of the checkin.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "CHECKIN_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The ID of the checkin to remove a comment from.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "commentId",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "The id of the comment to remove.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{CHECKIN_ID}/like",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "Like",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Remove Venue",
+		    "notes": "Remove a venue from a venue group.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "CHECKIN_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The checkin to like or unlike.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "set",
+                            "required": true,
 			    "type": "int",
                             "paramType": "query",
-			    "description": "The search result key version you want to receive back from your search.",
+			    "description": "If 1, like this checkin. If 0 unlike (un-do a previous like) it. Default value is 1.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "explicit",
-                            "required": false,
+	                    "name": "oauth_token",
+                            "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "A flag indicating whether or not you want to include explicit content in your search results.",
-			    "defaultValue": ""
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
                         }
 		    ],
 		    "responseMessages": [
@@ -236,6 +468,7 @@
 		}
 	    ]
 	}
+
     ],
     "models": {
 }

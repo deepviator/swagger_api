@@ -1,19 +1,19 @@
 {
     "swaggerVersion": "1.2",
-    "basePath": "https://itunes.apple.com",
+    "basePath": "https://api.foursquare.com/v2/venuegroups",
     "authorizations": {
     },
     "apis": [
 	{
-	    "path": "/search",
+	    "path": "/{GROUP_ID}",
 	    "description": "",
 	    "operations": [
 		{
-		    "nickname": "SearchMedia",
+		    "nickname": "VenueGroup",
 		    "method": "GET",
 		    "type": "",
-		    "summary": "Search Media in iTunes",
-		    "notes": "To search for content from a field in your website and display the results in your website, you must create a search field that passes a fully-qualified URL content request to the iTunes Store, parse the JavaScript Object Notation (JSON) format returned from the search, and display the results in your website.",
+		    "summary": "Venue Group Details",
+		    "notes": "Get venue group details.",
 		    "consumes": [
 		    ],
 		    "produces": [
@@ -21,84 +21,20 @@
 		    ],
 		    "parameters": [
                         {
-	                    "name": "term",
+	                    "name": "GROUP_ID",
                             "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "The URL-encoded text string you want to search for.For example: jack+johnson.",
+                            "paramType": "path",
+			    "description": "The ID of the venue group to retrieve additional information for.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "country",
+	                    "name": "oauth_token",
                             "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "The two-letter country code for the store you want to search. The search uses the default store front for the specified country. For example: US.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "media",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The media type you want to search for. For example: movie.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "entity",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The type of results you want returned, relative to the specified media type. For example: movieArtist for a movie media type search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "attribute",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The attribute you want to search for in the stores, relative to the specified media type. For example, if you want to search for an artist by name specify entity=allArtist&attribute=allArtistTerm.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "callback",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The name of the Javascript callback function you want to use when returning search results to your website. For example: wsSearchCB.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "limit",
-                            "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The number of search results you want the iTunes Store to return. ",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "lang",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The language, English or Japanese, you want to use when returning search results. Specify the language using the five-letter codename. For example: en_us.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "version",
-                            "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The search result key version you want to receive back from your search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "explicit",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "A flag indicating whether or not you want to include explicit content in your search results.",
-			    "defaultValue": ""
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
                         }
 		    ],
 		    "responseMessages": [
@@ -109,15 +45,15 @@
 	    ]
 	},
 	{
-	    "path": "/lookup",
+	    "path": "/add",
 	    "description": "",
 	    "operations": [
 		{
-		    "nickname": "LookupMedia",
-		    "method": "GET",
+		    "nickname": "AddGroup",
+		    "method": "POST",
 		    "type": "",
-		    "summary": "Lookup Media in iTunes",
-		    "notes": "You can also create a lookup request to search for content in the stores based on iTunes IDs, UPCs/ EANs, and All Music Guide (AMG) IDs. ID-based lookups are faster and contain fewer false-positive results.",
+		    "summary": "Create a new venue group",
+		    "notes": "Create a venue group. If the venueId parameter is specified, then the endpoint will add the specified venues to the venue group. If it is not possible to add all of the specified venues to the group, then creation of the venue group will fail entirely.",
 		    "consumes": [
 		    ],
 		    "produces": [
@@ -125,108 +61,477 @@
 		    ],
 		    "parameters": [
                         {
-	                    "name": "id",
+	                    "name": "name",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "The name to give the group.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "venueId",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "Media ID No.",
+			    "description": "Comma-delimited list of venue IDs to add to the group. If this parameter is not specified, then the venue group will initially be empty.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "upc",
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{GROUP_ID}/delete",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "delete",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Delete a Venue Group",
+		    "notes": "Delete a venue group.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "GROUP_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The ID of the venue group to delete.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/list",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "list",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "List Venues",
+		    "notes": "List all venue groups owned by the user..",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{GROUP_ID}/timeseries",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "timeseries",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Venue Group Time Series Data",
+		    "notes": "Get daily venue stats for the venues in a group over a time range.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "GROUP_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The ID of the venue group to delete.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "startAt",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "The start of the time range to retrieve stats for (seconds since epoch).",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "endAt",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "The end of the time range to retrieve stats for (seconds since epoch). If omitted, the current time is assumed.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "fields",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "Specifies which fields to return. May be one or more of totalCheckins, newCheckins, uniqueVisitors, sharing, genders, ages, hours, separated by commas.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{GROUP_ID}/addvenue",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "AddVenue",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Add a Venue",
+		    "notes": "Add a venue to a venue group.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "GROUP_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The ID of the venue group to modify.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "venueId",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "comma-delimited list of venue IDs to add to the group",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{GROUP_ID}/campaigns",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "Campaigns",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Retrieve Campaigns for Venue Group",
+		    "notes": "Retrieve the campaigns that reference this venue group.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "GROUP_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The ID of the venue group to access",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{VENUEGROUP_ID}/edit",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "edit",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Bulk Edit Venues",
+		    "notes": "Allows you to make changes to all venues in a venue group. Acting user must be the owner of the group. Any blank parameter deletes an old value, any unspecified parameter does nothing.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "VENUEGROUP_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The venue group id to edit.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "name",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The name of the venue.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "city",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The city name where this venue is.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "state",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The nearest state or province to the venue.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "zip",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The zip or postal code for the venue.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "phone",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The phone number for the venue.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "categoryId",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The IDs of the category or categories to which you want to assign this venue (separate multiple IDs with commas).",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "twitter",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The twitter handle of the venue.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "description",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "A freeform description of the venue, up to 300 characters.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "url",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The url of the homepage of the venue.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "hours",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The hours for the venue, as a semi-colon separated list of open segments and named segments (e.g., brunch or happy hour). Open segments are formatted as day,start,end. Named segments additionally have a label, formatted as day,start,end,label. Days are formatted as integers with Monday = 1,...,Sunday = 7. Start and End are formatted as [+]HHMM format. Use 24 hour format (no colon), prefix with 0 for HH or MM less than 10. Use '+' prefix, i.e., +0230 to represent 2:30 am past midnight into the following day.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{GROUP_ID}/removevenue",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "RemoveVenue",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Remove Venue",
+		    "notes": "Remove a venue from a venue group.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "GROUP_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The ID of the venue group to modify.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "venueId",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "comma-delimited list of venue IDs to remove from the group",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{GROUP_ID}/update",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "update",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Update Venue Group",
+		    "notes": "Updates a venue group. At least one of the name and venueId parameters must be specified.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "GROUP_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The ID of the venue group to modify.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "name",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "UPCs / EANs",
+			    "description": "If specified, the new name to give to the group.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "isbn",
+	                    "name": "venueId",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "ISBN No.",
+			    "description": "If specified, a comma-delimited list of venue IDs that will become the new set of venue IDs for the group.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "amgArtistId",
-                            "required": false,
+	                    "name": "oauth_token",
+                            "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "AMG Artist",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "amgAlbumId",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "AMG Album Id.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "amgVideoId",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "AMG Video Id.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "entity",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The type of results you want returned, relative to the specified media type. For example: movieArtist for a movie media type search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "attribute",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The attribute you want to search for in the stores, relative to the specified media type. For example, if you want to search for an artist by name specify entity=allArtist&attribute=allArtistTerm.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "callback",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The name of the Javascript callback function you want to use when returning search results to your website. For example: wsSearchCB.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "limit",
-                            "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The number of search results you want the iTunes Store to return. ",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "lang",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The language, English or Japanese, you want to use when returning search results. Specify the language using the five-letter codename. For example: en_us.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "version",
-                            "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The search result key version you want to receive back from your search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "explicit",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "A flag indicating whether or not you want to include explicit content in your search results.",
-			    "defaultValue": ""
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
                         }
 		    ],
 		    "responseMessages": [
@@ -236,6 +541,7 @@
 		}
 	    ]
 	}
+
     ],
     "models": {
 }
