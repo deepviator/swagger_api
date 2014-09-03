@@ -1,19 +1,19 @@
 {
     "swaggerVersion": "1.2",
-    "basePath": "https://itunes.apple.com",
+    "basePath": "https://api.foursquare.com/v2/campaigns",
     "authorizations": {
     },
     "apis": [
 	{
-	    "path": "/search",
+	    "path": "/{CAMPAIGN_ID}",
 	    "description": "",
 	    "operations": [
 		{
-		    "nickname": "SearchMedia",
+		    "nickname": "CampaignDetails",
 		    "method": "GET",
 		    "type": "",
-		    "summary": "Search Media in iTunes",
-		    "notes": "To search for content from a field in your website and display the results in your website, you must create a search field that passes a fully-qualified URL content request to the iTunes Store, parse the JavaScript Object Notation (JSON) format returned from the search, and display the results in your website.",
+		    "summary": "Campaign Details",
+		    "notes": "Get details of a campaign.",
 		    "consumes": [
 		    ],
 		    "produces": [
@@ -21,84 +21,20 @@
 		    ],
 		    "parameters": [
                         {
-	                    "name": "term",
+	                    "name": "CAMPAIGN_ID",
                             "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "The URL-encoded text string you want to search for.For example: jack+johnson.",
+                            "paramType": "path",
+			    "description": "The ID of the campaign to retrieve additional information for.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "country",
+	                    "name": "oauth_token",
                             "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "The two-letter country code for the store you want to search. The search uses the default store front for the specified country. For example: US.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "media",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The media type you want to search for. For example: movie.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "entity",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The type of results you want returned, relative to the specified media type. For example: movieArtist for a movie media type search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "attribute",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The attribute you want to search for in the stores, relative to the specified media type. For example, if you want to search for an artist by name specify entity=allArtist&attribute=allArtistTerm.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "callback",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The name of the Javascript callback function you want to use when returning search results to your website. For example: wsSearchCB.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "limit",
-                            "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The number of search results you want the iTunes Store to return. ",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "lang",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The language, English or Japanese, you want to use when returning search results. Specify the language using the five-letter codename. For example: en_us.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "version",
-                            "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The search result key version you want to receive back from your search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "explicit",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "A flag indicating whether or not you want to include explicit content in your search results.",
-			    "defaultValue": ""
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
                         }
 		    ],
 		    "responseMessages": [
@@ -109,15 +45,15 @@
 	    ]
 	},
 	{
-	    "path": "/lookup",
+	    "path": "/add",
 	    "description": "",
 	    "operations": [
 		{
-		    "nickname": "LookupMedia",
-		    "method": "GET",
+		    "nickname": "CreateCampaign",
+		    "method": "POST",
 		    "type": "",
-		    "summary": "Lookup Media in iTunes",
-		    "notes": "You can also create a lookup request to search for content in the stores based on iTunes IDs, UPCs/ EANs, and All Music Guide (AMG) IDs. ID-based lookups are faster and contain fewer false-positive results.",
+		    "summary": "Create a campaign",
+		    "notes": "Create a campaign. The special must be started in order for it to be visible to users. Homes and Offices are not allowed to run specials, so an attempt to add a campaign on such a venue will result in an error.",
 		    "consumes": [
 		    ],
 		    "produces": [
@@ -125,108 +61,300 @@
 		    ],
 		    "parameters": [
                         {
-	                    "name": "id",
+	                    "name": "specialId",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "Media ID No.",
+			    "description": "required (unless campaignId has been provided). Special ID.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "upc",
+	                    "name": "groupId",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "UPCs / EANs",
+			    "description": "required (unless venueId has been provided). Group ID.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "isbn",
+	                    "name": "venueId",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "ISBN No.",
+			    "description": "required (unless groupId has been provided). Venue ID.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "amgArtistId",
+	                    "name": "endAt",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "AMG Artist",
+			    "description": "DateTime when the campaign is to be automatically deactivated (seconds since epoch).",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "amgAlbumId",
+	                    "name": "startAt",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "AMG Album Id.",
+			    "description": "DateTime when the campaign is to be started (seconds since epoch). If this parameter is not specified, the campaign will be in a pending state until the campaign is actually started via the start action. If this parameter is specified and is in the past, the campaign will be started as of the current time.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "amgVideoId",
+	                    "name": "campaignId",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "AMG Video Id.",
+			    "description": "ID of an existing campaign to copy. The existing campaign will be used to supply values for all parameters other than the startAt and endAt parameters. Accordingly, the specialId parameter is optional when campaignId has been specified, but may be specified to override the special ID obtained from the existing campaign. Similarly, the groupId and venueId parameters can also be specified to override the values obtained from the existing campaign.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "entity",
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/list",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "ListCampaigns",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "List Campaigns",
+		    "notes": "List all campaigns matching the given criteria.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "specialId",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "The type of results you want returned, relative to the specified media type. For example: movieArtist for a movie media type search.",
+			    "description": "if specified, limits response to campaigns involving the given special.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "attribute",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The attribute you want to search for in the stores, relative to the specified media type. For example, if you want to search for an artist by name specify entity=allArtist&attribute=allArtistTerm.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "callback",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The name of the Javascript callback function you want to use when returning search results to your website. For example: wsSearchCB.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "limit",
+	                    "name": "groupId",
                             "required": false,
 			    "type": "int",
                             "paramType": "query",
-			    "description": "The number of search results you want the iTunes Store to return. ",
+			    "description": "if specified, limits response to campaigns involving the given group.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "lang",
+	                    "name": "status",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "The language, English or Japanese, you want to use when returning search results. Specify the language using the five-letter codename. For example: en_us.",
+			    "description": "which campaigns to return: pending,scheduled,active,expired,depleted,stopped,notStarted,ended,all (default=all).",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "version",
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{CAMPAIGN_ID}/timeseries",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "CTSD",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Campaign Time Series Data",
+		    "notes": "Get daily campaign stats over a given time range.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "{CAMPAIGN_ID}",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The campaign id to retrieve stats for.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "startAt",
                             "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The search result key version you want to receive back from your search.",
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The start of the time range to retrieve stats for (seconds since epoch). If omitted, the campaign start time will be used.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "explicit",
+	                    "name": "endAt",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "The end of the time range to retrieve stats for (seconds since epoch). If omitted, the campaign end time or the current time will be used, whichever occurs first.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{CAMPAIGN_ID}/delete",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "delete",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Delete a campaign",
+		    "notes": "Delete a campaign that has never been activated.  ",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "CAMPAIGN_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The ID of the campaign to delete.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{CAMPAIGN_ID}/end",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "EndCampaign",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "End a campaign",
+		    "notes": "End a campaign. ",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "CAMPAIGN_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The ID of the checkin to add a post to.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{CAMPAIGN_ID}/start",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "StartCampaign",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Start a campaign",
+		    "notes": "Start a campaign. Currently we only allow two active specials per venue at a time. If any venue in the group associated with this campaign already has two active specials, this call will fail (with a helpful error message).",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "CAMPAIGN_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The ID of the checkin to remove a comment from.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "startAt",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "A flag indicating whether or not you want to include explicit content in your search results.",
+			    "description": "DateTime when the campaign is to be started (seconds since epoch). If this parameter is not specified or is in the past, the campaign will be started as of the current time.",
 			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
                         }
 		    ],
 		    "responseMessages": [
@@ -236,6 +364,7 @@
 		}
 	    ]
 	}
+
     ],
     "models": {
 }
