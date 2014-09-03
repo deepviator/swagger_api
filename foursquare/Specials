@@ -1,19 +1,19 @@
 {
     "swaggerVersion": "1.2",
-    "basePath": "https://itunes.apple.com",
+    "basePath": "https://api.foursquare.com/v2/specials",
     "authorizations": {
     },
     "apis": [
 	{
-	    "path": "/search",
+	    "path": "/{SPECIAL_ID}",
 	    "description": "",
 	    "operations": [
 		{
-		    "nickname": "SearchMedia",
+		    "nickname": "SpecialDetail",
 		    "method": "GET",
 		    "type": "",
-		    "summary": "Search Media in iTunes",
-		    "notes": "To search for content from a field in your website and display the results in your website, you must create a search field that passes a fully-qualified URL content request to the iTunes Store, parse the JavaScript Object Notation (JSON) format returned from the search, and display the results in your website.",
+		    "summary": "Special Detail",
+		    "notes": "Gives details about a special, including text and whether it is unlocked for the current or provided user.",
 		    "consumes": [
 		    ],
 		    "produces": [
@@ -21,84 +21,36 @@
 		    ],
 		    "parameters": [
                         {
-	                    "name": "term",
+	                    "name": "SPECIAL_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "TID of special to retrieve.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "venueId",
                             "required": true,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "The URL-encoded text string you want to search for.For example: jack+johnson.",
+			    "description": "ID of a venue the special is running at",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "country",
+	                    "name": "userId",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "ID of the user to check whether the special is unlocked for. Only available if the current user is the manager of the venue. If not provided, checks wher the special is unlocked for the current user.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
                             "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "The two-letter country code for the store you want to search. The search uses the default store front for the specified country. For example: US.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "media",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The media type you want to search for. For example: movie.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "entity",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The type of results you want returned, relative to the specified media type. For example: movieArtist for a movie media type search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "attribute",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The attribute you want to search for in the stores, relative to the specified media type. For example, if you want to search for an artist by name specify entity=allArtist&attribute=allArtistTerm.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "callback",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The name of the Javascript callback function you want to use when returning search results to your website. For example: wsSearchCB.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "limit",
-                            "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The number of search results you want the iTunes Store to return. ",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "lang",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The language, English or Japanese, you want to use when returning search results. Specify the language using the five-letter codename. For example: en_us.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "version",
-                            "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The search result key version you want to receive back from your search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "explicit",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "A flag indicating whether or not you want to include explicit content in your search results.",
-			    "defaultValue": ""
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
                         }
 		    ],
 		    "responseMessages": [
@@ -109,15 +61,15 @@
 	    ]
 	},
 	{
-	    "path": "/lookup",
+	    "path": "/add",
 	    "description": "",
 	    "operations": [
 		{
-		    "nickname": "LookupMedia",
-		    "method": "GET",
+		    "nickname": "NewSpecial",
+		    "method": "POST",
 		    "type": "",
-		    "summary": "Lookup Media in iTunes",
-		    "notes": "You can also create a lookup request to search for content in the stores based on iTunes IDs, UPCs/ EANs, and All Music Guide (AMG) IDs. ID-based lookups are faster and contain fewer false-positive results.",
+		    "summary": "Create a new special",
+		    "notes": "Allows you to create a new special. As of November 2013, mayor, regular, swarm, friends, and flash specials are deprecated.",
 		    "consumes": [
 		    ],
 		    "produces": [
@@ -125,75 +77,179 @@
 		    ],
 		    "parameters": [
                         {
-	                    "name": "id",
+	                    "name": "name",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "Media ID No.",
+			    "description": "A name for the special.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "upc",
+	                    "name": "text",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "UPCs / EANs",
+			    "description": "Required. Maximum length of 200 characters.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "isbn",
+	                    "name": "finePrint",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "ISBN No.",
+			    "description": "Maximum length of 200 characters. Fine print, shown in small type on the special detail page.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "amgArtistId",
+	                    "name": "count1",
                             "required": false,
-			    "type": "string",
+			    "type": "int",
                             "paramType": "query",
-			    "description": "AMG Artist",
+			    "description": "Specifier for special types.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "amgAlbumId",
-                            "required": false,
+	                    "name": "type",
+                            "required": true,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "AMG Album Id.",
+			    "description": "The type of special.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "amgVideoId",
+	                    "name": "offerId",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "AMG Video Id.",
+			    "description": "Maximum length of 16 characters. Internal id in your 3rd party system.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "entity",
+	                    "name": "cost",
                             "required": false,
-			    "type": "string",
+			    "type": "float",
                             "paramType": "query",
-			    "description": "The type of results you want returned, relative to the specified media type. For example: movieArtist for a movie media type search.",
+			    "description": "The amount of money the user must spend to use this special in dollars and cents. For example, 5.50 meaning 5 dollars and 50 cents.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "attribute",
-                            "required": false,
+	                    "name": "oauth_token",
+                            "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "The attribute you want to search for in the stores, relative to the specified media type. For example, if you want to search for an artist by name specify entity=allArtist&attribute=allArtistTerm.",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/list",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "ListSpecials",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "List Specials",
+		    "notes": "List available specials.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "venueId",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "comma-separated list of venue IDs; filters results to the specials assigned to the venue(s).",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "callback",
+	                    "name": "statusq",
                             "required": false,
-			    "type": "string",
+			    "type": "int",
                             "paramType": "query",
-			    "description": "The name of the Javascript callback function you want to use when returning search results to your website. For example: wsSearchCB.",
+			    "description": "comma-separated list of venue IDs; filters results to the specials assigned to the venue(s).",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/search",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "SearchSpecial",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Search Specials",
+		    "notes": "Returns a list of specials near the current location.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "ll",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "Latitude and longitude to search near.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "radius",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "Limit results to venues within this many meters of the specified location. Defaults to a city-wide area.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "llAcc",
+                            "required": false,
+			    "type": "float",
+                            "paramType": "query",
+			    "description": "Accuracy of latitude and longitude, in meters.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "alt",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "Altitude of the user's location, in meters.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "altAcc",
+                            "required": false,
+			    "type": "float",
+                            "paramType": "query",
+			    "description": "Accuracy of the user's altitude, in meters.",
 			    "defaultValue": ""
                         },
                         {
@@ -201,32 +257,160 @@
                             "required": false,
 			    "type": "int",
                             "paramType": "query",
-			    "description": "The number of search results you want the iTunes Store to return. ",
+			    "description": "Number of results to return, up to 50.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "lang",
-                            "required": false,
+	                    "name": "oauth_token",
+                            "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "The language, English or Japanese, you want to use when returning search results. Specify the language using the five-letter codename. For example: en_us.",
-			    "defaultValue": ""
-                        },
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{SPECIAL_ID}/configuration",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "Special Detail",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Special Detail",
+		    "notes": "Get special configuration details.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
                         {
-	                    "name": "version",
-                            "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The search result key version you want to receive back from your search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "explicit",
-                            "required": false,
+	                    "name": "SPECIAL_ID",
+                            "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "A flag indicating whether or not you want to include explicit content in your search results.",
+                            "paramType": "path",
+			    "description": "The ID of the special to retrieve configuration details for.",
 			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{ID}/flag",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "FlagSpecial",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Flag a Special",
+		    "notes": "Allows users to indicate a Special is improper in some way.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The id of the special being flagged.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "venueId",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The id of the venue running the special.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "problem",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "One of not_redeemable, not_valuable, other.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "text",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "Additional text about why the user has flagged this special.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{SPECIAL_ID}/retire",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "RetireSpecial",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Retire a Special",
+		    "notes": "Retire a special. Retired specials will not show up in the list of specials and cannot be assigned to a group. Also ends any active campaigns associated with the special.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "SPECIAL_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The ID of the special to retire.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
                         }
 		    ],
 		    "responseMessages": [
