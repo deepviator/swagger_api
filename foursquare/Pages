@@ -239,7 +239,7 @@
                         {
 	                    "name": "limit",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query",
 			    "description": "Number of results to return, up to 500.",
 			    "defaultValue": ""
@@ -247,7 +247,7 @@
                         {
 	                    "name": "offset",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query",
 			    "description": "Used to page through results.",
 			    "defaultValue": ""
@@ -399,7 +399,7 @@
                         {
 	                    "name": "offset",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query",
 			    "description": "The offset of which venues to return. Defaults to 0.",
 			    "defaultValue": ""
@@ -407,7 +407,7 @@
                         {
 	                    "name": "limit",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query",
 			    "description": "he number of venues to return. Defaults to 20, max of 100.",
 			    "defaultValue": ""
@@ -415,7 +415,7 @@
                         {
 	                    "name": "storeId",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query",
 			    "description": "Only return venues whose storeId matches. storeIds are defined by the page manager (and therefore namespaced to that particular page). They are the page's own internal identifier for that venue. Cannot be used with any geo params..",
 			    "defaultValue": ""
@@ -463,7 +463,7 @@
                         {
 	                    "name": "set",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query",
 			    "description": "If 1, follow this page. If 0 unfollow (un-do a previous follow) it. Default value is 1",
 			    "defaultValue": ""

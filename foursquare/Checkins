@@ -119,7 +119,7 @@
                         {
 	                    "name": "llAcc",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query",
 			    "description": "Accuracy of the user's latitude and longitude, in meters.",
 			    "defaultValue": ""
@@ -127,7 +127,7 @@
                         {
 	                    "name": "alt",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query",
 			    "description": "Altitude of the user's location, in meters.",
 			    "defaultValue": ""
@@ -135,7 +135,7 @@
                         {
 	                    "name": "altAcc",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query",
 			    "description": "Vertical accuracy of the user's location, in meters.",
 			    "defaultValue": ""
@@ -183,7 +183,7 @@
                         {
 	                    "name": "limit",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query",
 			    "description": "Number of results to return, up to 100.",
 			    "defaultValue": ""
@@ -447,7 +447,7 @@
                         {
 	                    "name": "set",
                             "required": true,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query",
 			    "description": "If 1, like this checkin. If 0 unlike (un-do a previous like) it. Default value is 1.",
 			    "defaultValue": ""

@@ -135,7 +135,7 @@
                         {
 	                    "name": "near",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query",
 			    "description": "required unless ll is provided. A string naming a place in the world. If the near string is not geocodable, returns a failed_geocode error. Otherwise, searches within the bounds of the <a href=\"https://developer.foursquare.com/docs/responses/geocode\">geocode</a> and adds a geocode object to the response.",
 			    "defaultValue": ""
@@ -143,7 +143,7 @@
                         {
 	                    "name": "limit",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query",
 			    "description": "Number of results to return, up to 500.",
 			    "defaultValue": ""
@@ -151,7 +151,7 @@
                         {
 	                    "name": "offset",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query",
 			    "description": "Used to page through results.",
 			    "defaultValue": ""
@@ -399,7 +399,7 @@
                         {
 	                    "name": "set",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query",
 			    "description": "If 1, like this tip. If 0 unlike (un-do a previous like) it. Default value is 1.",
 			    "defaultValue": ""

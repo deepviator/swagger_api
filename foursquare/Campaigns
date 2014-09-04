@@ -151,7 +151,7 @@
                         {
 	                    "name": "groupId",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query",
 			    "description": "if specified, limits response to campaigns involving the given group.",
 			    "defaultValue": ""

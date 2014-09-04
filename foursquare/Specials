@@ -103,7 +103,7 @@
                         {
 	                    "name": "count1",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query",
 			    "description": "Specifier for special types.",
 			    "defaultValue": ""
@@ -175,7 +175,7 @@
                         {
 	                    "name": "statusq",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query",
 			    "description": "comma-separated list of venue IDs; filters results to the specials assigned to the venue(s).",
 			    "defaultValue": ""
@@ -223,7 +223,7 @@
                         {
 	                    "name": "radius",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query",
 			    "description": "Limit results to venues within this many meters of the specified location. Defaults to a city-wide area.",
 			    "defaultValue": ""
@@ -239,7 +239,7 @@
                         {
 	                    "name": "alt",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query",
 			    "description": "Altitude of the user's location, in meters.",
 			    "defaultValue": ""
@@ -255,7 +255,7 @@
                         {
 	                    "name": "limit",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query",
 			    "description": "Number of results to return, up to 50.",
 			    "defaultValue": ""

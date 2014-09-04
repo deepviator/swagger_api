@@ -103,7 +103,7 @@
                         {
 	                    "name": "value",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query",
 			    "description": "1 for true, and 0 for false.",
 			    "defaultValue": ""

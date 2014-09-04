@@ -1,19 +1,19 @@
 {
     "swaggerVersion": "1.2",
-    "basePath": "https://itunes.apple.com",
+    "basePath": "https://api.foursquare.com/v2/pageupdates",
     "authorizations": {
     },
     "apis": [
 	{
-	    "path": "/search",
+	    "path": "/{UPDATE_ID}",
 	    "description": "",
 	    "operations": [
 		{
-		    "nickname": "SearchMedia",
+		    "nickname": "Page Update Details",
 		    "method": "GET",
 		    "type": "",
-		    "summary": "Search Media in iTunes",
-		    "notes": "To search for content from a field in your website and display the results in your website, you must create a search field that passes a fully-qualified URL content request to the iTunes Store, parse the JavaScript Object Notation (JSON) format returned from the search, and display the results in your website.",
+		    "summary": "Page Update Details",
+		    "notes": "Get page update details.",
 		    "consumes": [
 		    ],
 		    "produces": [
@@ -21,84 +21,36 @@
 		    ],
 		    "parameters": [
                         {
-	                    "name": "term",
+	                    "name": "UPDATE_ID",
                             "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "The URL-encoded text string you want to search for.For example: jack+johnson.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "country",
-                            "required": true,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The two-letter country code for the store you want to search. The search uses the default store front for the specified country. For example: US.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "media",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The media type you want to search for. For example: movie.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "entity",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The type of results you want returned, relative to the specified media type. For example: movieArtist for a movie media type search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "attribute",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The attribute you want to search for in the stores, relative to the specified media type. For example, if you want to search for an artist by name specify entity=allArtist&attribute=allArtistTerm.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "callback",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The name of the Javascript callback function you want to use when returning search results to your website. For example: wsSearchCB.",
+                            "paramType": "path",
+			    "description": "The ID of the event to retrieve additional information for.",
 			    "defaultValue": ""
                         },
                         {
 	                    "name": "limit",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query",
-			    "description": "The number of search results you want the iTunes Store to return. ",
+			    "description": "The number of nearby venues to show (default 20).",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "lang",
+	                    "name": "ll",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "The language, English or Japanese, you want to use when returning search results. Specify the language using the five-letter codename. For example: en_us.",
+			    "description": "The location of the current user.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "version",
-                            "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The search result key version you want to receive back from your search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "explicit",
-                            "required": false,
+	                    "name": "oauth_token",
+                            "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "A flag indicating whether or not you want to include explicit content in your search results.",
-			    "defaultValue": ""
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
                         }
 		    ],
 		    "responseMessages": [
@@ -109,15 +61,15 @@
 	    ]
 	},
 	{
-	    "path": "/lookup",
+	    "path": "/add",
 	    "description": "",
 	    "operations": [
 		{
-		    "nickname": "LookupMedia",
-		    "method": "GET",
+		    "nickname": "Event Categories",
+		    "method": "POST",
 		    "type": "",
-		    "summary": "Lookup Media in iTunes",
-		    "notes": "You can also create a lookup request to search for content in the stores based on iTunes IDs, UPCs/ EANs, and All Music Guide (AMG) IDs. ID-based lookups are faster and contain fewer false-positive results.",
+		    "summary": "Event Categories",
+		    "notes": "Returns a hierarchical list of categories applied to events.",
 		    "consumes": [
 		    ],
 		    "produces": [
@@ -125,108 +77,172 @@
 		    ],
 		    "parameters": [
                         {
-	                    "name": "id",
+	                    "name": "pageId",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "ID of the page to associate with the broadcast. To find the page for a venue you can look at the page object in the <a href=\"https://developer.foursquare.com/docs/responses/venue\">venue</a> response.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "groupId",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "Media ID No.",
+			    "description": "The venue group from which to broadcast an update.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "upc",
+	                    "name": "venueId",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "UPCs / EANs",
+			    "description": "A venue from which to broadcast an update.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "isbn",
+	                    "name": "shout",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "ISBN No.",
+			    "description": "Text associated with the broadcast. 160 characters max, 10 characters min.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "amgArtistId",
+	                    "name": "photoId",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "AMG Artist",
+			    "description": "An optional photo to attach to the broadcast. For a new photo, you should use the photo <ahref=\"https://developer.foursquare.com/docs/photos/add\">add</a> endpoint and specify only the pageId parameter.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "amgAlbumId",
+	                    "name": "broadcast",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "AMG Album Id.",
+			    "description": "Additional places to send the broadcast to. Accepts a comma-delimited list of values: facebook (share on facebook), twitter (share on twitter), private (just create the update without broadcasting to anyone)",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "amgVideoId",
-                            "required": false,
+	                    "name": "oauth_token",
+                            "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "AMG Video Id.",
-			    "defaultValue": ""
-                        },
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+	{
+	    "path": "/list",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "List Page Updates",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "List Page Updates",
+		    "notes": "Returns a list of page updates created by the current user.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
                         {
-	                    "name": "entity",
-                            "required": false,
+	                    "name": "oauth_token",
+                            "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "The type of results you want returned, relative to the specified media type. For example: movieArtist for a movie media type search.",
-			    "defaultValue": ""
-                        },
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{UPDATE_ID}/delete",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "DeletePageUpdate",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Delete a Page Update",
+		    "notes": "Delete a page update created by the current user.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
                         {
-	                    "name": "attribute",
-                            "required": false,
+	                    "name": "UPDATE_ID",
+                            "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "The attribute you want to search for in the stores, relative to the specified media type. For example, if you want to search for an artist by name specify entity=allArtist&attribute=allArtistTerm.",
+                            "paramType": "path",
+			    "description": "The ID of the update to delete.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "callback",
-                            "required": false,
+	                    "name": "oauth_token",
+                            "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "The name of the Javascript callback function you want to use when returning search results to your website. For example: wsSearchCB.",
-			    "defaultValue": ""
-                        },
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{UPDATE_ID}/like",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "LikePageUpdate",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Like a Page Update",
+		    "notes": "Causes the current user to 'like' a page update. If there is a campaign associated with the update, the like will propagate to the special as well.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
                         {
-	                    "name": "limit",
-                            "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The number of search results you want the iTunes Store to return. ",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "lang",
-                            "required": false,
+	                    "name": "UPDATE_ID",
+                            "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "The language, English or Japanese, you want to use when returning search results. Specify the language using the five-letter codename. For example: en_us.",
+                            "paramType": "path",
+			    "description": "The ID of the update to like.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "version",
-                            "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The search result key version you want to receive back from your search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "explicit",
-                            "required": false,
+	                    "name": "oauth_token",
+                            "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "A flag indicating whether or not you want to include explicit content in your search results.",
-			    "defaultValue": ""
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
                         }
 		    ],
 		    "responseMessages": [

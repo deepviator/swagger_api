@@ -103,7 +103,7 @@
                         {
 	                    "name": "public",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query",
 			    "description": "When the checkinId is also provided (meaning this is a photo attached to a checkin), this parameter allows for making the photo public and viewable at the venue. Valid values are 1 and 0 (default).<br>Note that photos attached to venues, tips, and pages (updates) are always public.",
 			    "defaultValue": ""
@@ -119,7 +119,7 @@
                         {
 	                    "name": "llAcc",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query",
 			    "description": "Accuracy of the user's latitude and longitude, in meters.",
 			    "defaultValue": ""
@@ -135,7 +135,7 @@
                         {
 	                    "name": "alt",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query",
 			    "description": "Altitude of the user's location, in meters.",
 			    "defaultValue": ""
@@ -143,7 +143,7 @@
                         {
 	                    "name": "altAcc",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query",
 			    "description": "Vertical accuracy of the user's location, in meters.",
 			    "defaultValue": ""

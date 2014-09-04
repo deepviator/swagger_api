@@ -257,7 +257,7 @@
                         {
 	                    "name": "limit",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query" ,
 			    "description": "Number of results to return, up to 250.",
 			    "defaultValue": ""
@@ -265,7 +265,7 @@
                         {
 	                    "name": "offset",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query" ,
 			    "description": "The number of results to skip. Used to page through results.",
 			    "defaultValue": ""
@@ -336,7 +336,7 @@
                         {
 	                    "name": "limit",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query" ,
 			    "description": "Number of results to return, up to 500.",
 			    "defaultValue": ""
@@ -344,7 +344,7 @@
                         {
 	                    "name": "offset",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query" ,
 			    "description": "Used to page through results.",
 			    "defaultValue": ""
@@ -407,7 +407,7 @@
                         {
 	                    "name": "limit",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query" ,
 			    "description": "Number of results to return, up to 200.",
 			    "defaultValue": ""
@@ -415,7 +415,7 @@
                         {
 	                    "name": "offset",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query" ,
 			    "description": "The number of results to skip. Used to page through results.",
 			    "defaultValue": ""
@@ -501,7 +501,7 @@
                         {
 	                    "name": "limit",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query" ,
 			    "description": "Number of results to return, up to 500.",
 			    "defaultValue": ""
@@ -509,7 +509,7 @@
                         {
 	                    "name": "offset",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query" ,
 			    "description": "Used to page through results.",
 			    "defaultValue": ""
@@ -572,7 +572,7 @@
                         {
 	                    "name": "limit",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query" ,
 			    "description": "Number of results to return, up to 500.",
 			    "defaultValue": ""
@@ -580,7 +580,7 @@
                         {
 	                    "name": "offset",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query" ,
 			    "description": "The number of results to skip. Used to page through results.",
 			    "defaultValue": ""
@@ -769,7 +769,7 @@
                         {
 	                    "name": "limit",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query" ,
 			    "description": "Number of results to return.",
 			    "defaultValue": ""
@@ -777,7 +777,7 @@
                         {
 	                    "name": "offset",
                             "required": false,
-			    "type": "int",
+			    "type": "integer",
                             "paramType": "query" ,
 			    "description": "Used to page through results.",
 			    "defaultValue": ""
