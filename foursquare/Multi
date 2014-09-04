@@ -5,7 +5,7 @@
     },
     "apis": [
 	{
-	    "path": "/{USER_ID}",
+	    "path": "/multi",
 	    "description": "",
 	    "operations": [
 		{
