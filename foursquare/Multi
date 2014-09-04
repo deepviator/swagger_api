@@ -25,7 +25,7 @@
                             "required": true,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "A comma-delimited list of API requests. The above parameter is constructed by encodeURIComponent("/venues/search?ll=" + encodeURIComponent("40,30") + ",/specials/search?ll=" + (encodeURIComponent("40,30"))), for example.",
+			    "description": "A comma-delimited list of API requests. The above parameter is constructed by encodeURIComponent(\"/venues/search?ll=\" + encodeURIComponent(\"40,30\") + \",/specials/search?ll=\" + (encodeURIComponent(\"40,30\"))), for example.",
 			    "defaultValue": ""
                         },
                         {
