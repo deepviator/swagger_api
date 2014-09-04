@@ -52,7 +52,7 @@
 		    "nickname": "AddTip",
 		    "method": "POST",
 		    "type": "",
-		    "summary": "Add a tipn",
+		    "summary": "Add a tips",
 		    "notes": "Allows you to add a new tip at a venue.",
 		    "consumes": [
 		    ],
@@ -248,7 +248,7 @@
 	                    "name": "{TIP_ID}",
                             "required": true,
 			    "type": "string",
-                            "paramType": "query" ,
+                            "paramType": "path" ,
 			    "description": "Identity of a tip to get lists for.",
 			    "defaultValue": ""
                         },
@@ -296,7 +296,7 @@
 	                    "name": "{TIP_ID}",
                             "required": true,
 			    "type": "string",
-                            "paramType": "query" ,
+                            "paramType": "path" ,
 			    "description": "Identity of a tip to get lists for.",
 			    "defaultValue": ""
                         },

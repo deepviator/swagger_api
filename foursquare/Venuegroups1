@@ -1,0 +1,126 @@
+{
+    "swaggerVersion": "1.2",
+    "basePath": "https://api.foursquare.com/v2/venuegroups",
+    "authorizations": {
+    },
+    "apis": [
+	{
+	    "path": "/{GROUP_ID}",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "VenueGroup",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Venue Group Details",
+		    "notes": "Get venue group details.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "GROUP_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The ID of the venue group to retrieve additional information for.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	}
+		{
+		    "nickname": "add",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Venue Group Details",
+		    "notes": "Get venue group details.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "GROUP_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "The ID of the venue group to retrieve additional information for.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+	{
+	    "path": "/GROUP_ID",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "VenueGroup",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Venue Group Details",
+		    "notes": "Get venue group details.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "GROUP_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "The ID of the venue group to retrieve additional information for.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	}
+    ],
+    "models": {
+}
+}

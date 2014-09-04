@@ -418,7 +418,7 @@
 	    "operations": [
 		{
 		    "nickname": "SearchTips",
-		    "method": "GET",
+		    "method": "POST",
 		    "type": "",
 		    "summary": "Search Nearby Tips",
 		    "notes": "Returns a list of tips near the area specified.",
@@ -498,7 +498,7 @@
 	    "operations": [
 		{
 		    "nickname": "DeleteItem",
-		    "method": "GET",
+		    "method": "POST",
 		    "type": "",
 		    "summary": "Delete an Item",
 		    "notes": "Allows you to delete items from a list. One of itemId, venueId, or tipId must be provided.",
@@ -562,7 +562,7 @@
 	    "operations": [
 		{
 		    "nickname": "FollowList",
-		    "method": "GET",
+		    "method": "POST",
 		    "type": "",
 		    "summary": "Follow a List",
 		    "notes": "Allows you to follow a list.",
@@ -602,7 +602,7 @@
 	    "operations": [
 		{
 		    "nickname": "MoveItem",
-		    "method": "GET",
+		    "method": "POST",
 		    "type": "",
 		    "summary": "Move Item",
 		    "notes": "Allows you to move an item on a list. One of beforeId or afterId must be specified.",

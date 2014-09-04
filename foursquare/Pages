@@ -1,19 +1,19 @@
 {
     "swaggerVersion": "1.2",
-    "basePath": "https://itunes.apple.com",
+    "basePath": "https://api.foursquare.com/v2/pages",
     "authorizations": {
     },
     "apis": [
 	{
-	    "path": "/search",
+	    "path": "/{USER_ID}",
 	    "description": "",
 	    "operations": [
 		{
-		    "nickname": "SearchMedia",
+		    "nickname": "Page",
 		    "method": "GET",
 		    "type": "",
-		    "summary": "Search Media in iTunes",
-		    "notes": "To search for content from a field in your website and display the results in your website, you must create a search field that passes a fully-qualified URL content request to the iTunes Store, parse the JavaScript Object Notation (JSON) format returned from the search, and display the results in your website.",
+		    "summary": "Page detail",
+		    "notes": "Returns user details for a page. Will return error if user specified is not a page. ",
 		    "consumes": [
 		    ],
 		    "produces": [
@@ -21,84 +21,20 @@
 		    ],
 		    "parameters": [
                         {
-	                    "name": "term",
+	                    "name": "USER_ID",
                             "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "The URL-encoded text string you want to search for.For example: jack+johnson.",
+                            "paramType": "path",
+			    "description": "Identity of the page to get details for.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "country",
+	                    "name": "oauth_token",
                             "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "The two-letter country code for the store you want to search. The search uses the default store front for the specified country. For example: US.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "media",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The media type you want to search for. For example: movie.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "entity",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The type of results you want returned, relative to the specified media type. For example: movieArtist for a movie media type search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "attribute",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The attribute you want to search for in the stores, relative to the specified media type. For example, if you want to search for an artist by name specify entity=allArtist&attribute=allArtistTerm.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "callback",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The name of the Javascript callback function you want to use when returning search results to your website. For example: wsSearchCB.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "limit",
-                            "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The number of search results you want the iTunes Store to return. ",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "lang",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The language, English or Japanese, you want to use when returning search results. Specify the language using the five-letter codename. For example: en_us.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "version",
-                            "required": false,
-			    "type": "int",
-                            "paramType": "query",
-			    "description": "The search result key version you want to receive back from your search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "explicit",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "A flag indicating whether or not you want to include explicit content in your search results.",
-			    "defaultValue": ""
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
                         }
 		    ],
 		    "responseMessages": [
@@ -109,15 +45,15 @@
 	    ]
 	},
 	{
-	    "path": "/lookup",
+	    "path": "/add",
 	    "description": "",
 	    "operations": [
 		{
-		    "nickname": "LookupMedia",
-		    "method": "GET",
+		    "nickname": "AddPage",
+		    "method": "POST",
 		    "type": "",
-		    "summary": "Lookup Media in iTunes",
-		    "notes": "You can also create a lookup request to search for content in the stores based on iTunes IDs, UPCs/ EANs, and All Music Guide (AMG) IDs. ID-based lookups are faster and contain fewer false-positive results.",
+		    "summary": "Add a Page",
+		    "notes": "Allows users to create a new page. The creating user is added as a manager of the new page.",
 		    "consumes": [
 		    ],
 		    "produces": [
@@ -125,75 +61,179 @@
 		    ],
 		    "parameters": [
                         {
-	                    "name": "id",
-                            "required": false,
+	                    "name": "name",
+                            "required": true,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "Media ID No.",
+			    "description": "The name of the page.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "upc",
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/managing",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "List Managed Pages",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "List Managed Pages",
+		    "notes": "Returns an array of the pages a user manages.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [                       
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/search",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "Search Pages",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Search Pages",
+		    "notes": "Returns a list of pages matching the search term.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "name",
                             "required": false,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "UPCs / EANs",
+                            "paramType": "query" ,
+			    "description": "A search term to be applied against page names.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "isbn",
+	                    "name": "twitter",
                             "required": false,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "ISBN No.",
+                            "paramType": "query" ,
+			    "description": "A comma-delimited list of Twitter handles to look for.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "amgArtistId",
+	                    "name": "fbid",
                             "required": false,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "AMG Artist",
+                            "paramType": "query" ,
+			    "description": "A comma-delimited list of Facebook ID's to look for.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "amgAlbumId",
-                            "required": false,
+	                    "name": "oauth_token",
+                            "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "AMG Album Id.",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{USER_ID}/access",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "Access Token",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Access Token",
+		    "notes": "Returns an OAuth access token for the specified page. The requesting user must be a manager of the page.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "USER_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path" ,
+			    "description": "The page you want similar pages for.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "amgVideoId",
-                            "required": false,
+	                    "name": "oauth_token",
+                            "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "AMG Video Id.",
-			    "defaultValue": ""
-                        },
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{USER_ID}/similar",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "Similar Pages",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "WhoSaves",
+		    "notes": "Returns a list of pages similar to the specified page.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
                         {
-	                    "name": "entity",
-                            "required": false,
+	                    "name": "{USER_ID}",
+                            "required": true,
 			    "type": "string",
-                            "paramType": "query",
-			    "description": "The type of results you want returned, relative to the specified media type. For example: movieArtist for a movie media type search.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "attribute",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The attribute you want to search for in the stores, relative to the specified media type. For example, if you want to search for an artist by name specify entity=allArtist&attribute=allArtistTerm.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "callback",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The name of the Javascript callback function you want to use when returning search results to your website. For example: wsSearchCB.",
+                            "paramType": "path" ,
+			    "description": "The page you want similar pages for.",
 			    "defaultValue": ""
                         },
                         {
@@ -201,32 +241,240 @@
                             "required": false,
 			    "type": "int",
                             "paramType": "query",
-			    "description": "The number of search results you want the iTunes Store to return. ",
+			    "description": "Number of results to return, up to 500.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "lang",
-                            "required": false,
-			    "type": "string",
-                            "paramType": "query",
-			    "description": "The language, English or Japanese, you want to use when returning search results. Specify the language using the five-letter codename. For example: en_us.",
-			    "defaultValue": ""
-                        },
-                        {
-	                    "name": "version",
+	                    "name": "offset",
                             "required": false,
 			    "type": "int",
                             "paramType": "query",
-			    "description": "The search result key version you want to receive back from your search.",
+			    "description": "Used to page through results.",
 			    "defaultValue": ""
                         },
                         {
-	                    "name": "explicit",
+	                    "name": "includeFollowing",
+                            "required": false,
+			    "type": "boolean",
+                            "paramType": "query",
+			    "description": "optional Boolean indicating whether results include pages already being followed by the user.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{PAGE_ID}/flag",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "PVTSD ",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Page Venues Time Series Data.",
+		    "notes": "Get daily venue stats for venues managed by a page over a time range.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "PAGE_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The page whose venues to get timeseries data for.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "startAt",
                             "required": false,
 			    "type": "string",
                             "paramType": "query",
-			    "description": "A flag indicating whether or not you want to include explicit content in your search results.",
+			    "description": "The start of the time range to retrieve stats for (seconds since epoch).",
 			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "endAt",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "The end of the time range to retrieve stats for (seconds since epoch). If omitted, the current time is assumed.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "fields",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "Specifies which fields to return. May be one or more of totalCheckins, newCheckins, uniqueVisitors, sharing, genders, ages, hours, separated by commas.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{PAGE_ID}/venues",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "Page Venues",
+		    "method": "GET",
+		    "type": "",
+		    "summary": "Page Venues",
+		    "notes": "Allows you to get the page's venues.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "PAGE_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The page id for which venues are being requested.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "ll",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "Not valid with ne or sw. Limits results to venues near this latitude and longitude within an optional radius.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "radius",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "Can be used when including ll. Not valid with ne or sw. Limit results to venues within this many meters of the specified ll. The maximum supported radius is currently 100,000 meters.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "sw",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "With ne, limits results to the bounding quadrangle defined by the latitude and longitude given by sw as its south-west corner, and ne as its north-east corner. Not valid with ll or radius. Bounding quadrangles with an area up to approximately 10,000 square kilometers are supported.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "ne",
+                            "required": false,
+			    "type": "string",
+                            "paramType": "query",
+			    "description": "Se sw",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "offset",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "The offset of which venues to return. Defaults to 0.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "limit",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "he number of venues to return. Defaults to 20, max of 100.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "storeId",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "Only return venues whose storeId matches. storeIds are defined by the page manager (and therefore namespaced to that particular page). They are the page's own internal identifier for that venue. Cannot be used with any geo params..",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
+                        }
+		    ],
+		    "responseMessages": [
+		    ],
+		    "authorizations": {
+		    }
+		}
+	    ]
+	},
+        {
+	    "path": "/{USER_ID}/follow",
+	    "description": "",
+	    "operations": [
+		{
+		    "nickname": "FollowPage.",
+		    "method": "POST",
+		    "type": "",
+		    "summary": "Follow or unfollow a page.",
+		    "notes": "Allows the acting user to follow or unfollow a page. Following a page subscribes the acting user to updates from that page.",
+		    "consumes": [
+		    ],
+		    "produces": [
+		    	"application/json"
+		    ],
+		    "parameters": [
+                        {
+	                    "name": "USER_ID",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "path",
+			    "description": "The page to follow or unfollow.",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "set",
+                            "required": false,
+			    "type": "int",
+                            "paramType": "query",
+			    "description": "If 1, follow this page. If 0 unfollow (un-do a previous follow) it. Default value is 1",
+			    "defaultValue": ""
+                        },
+                        {
+	                    "name": "oauth_token",
+                            "required": true,
+			    "type": "string",
+                            "paramType": "query" ,
+			    "description": "oauth_token",
+			    "defaultValue": "GBJ30W5U5YHAX1NSNSZ4VRH3ZI0SXLGQLDCF4YKNAXKY4V41&v=20140821"
                         }
 		    ],
 		    "responseMessages": [
@@ -236,6 +484,7 @@
 		}
 	    ]
 	}
+
     ],
     "models": {
 }
